@@ -1,0 +1,26 @@
+<authorgroup xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <author>
+        <personname>
+            <surname>Radi</surname>
+            <firstname>Daniel</firstname>        
+        </personname>    
+        <affiliation>
+            <shortaffil>Diak</shortaffil>
+            <jobtitle>Egyetemi hallgato</jobtitle>
+            <orgname>Debreceni Egyetem</orgname>
+            <orgdiv>Informotaikai kar</orgdiv>
+            <address>
+                <email>radidani55@gmailcom</email>
+            </address>
+        </affiliation>
+        <address>
+            <street>Rakoczi Ferenc utca 33a</street>
+            <city>Kocsord</city>
+            <postcode>4751</postcode>
+            <country>Magyarország</country>
+            <email>radidani55@gmail.com</email>
+            <otheraddr>
+            </otheraddr>
+        </address>
+    </author>    
+</authorgroup>
