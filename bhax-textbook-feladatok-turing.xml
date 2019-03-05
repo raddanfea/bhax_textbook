@@ -24,12 +24,12 @@
             <link xlink:href="https://github.com/raddanfea/prog1/blob/master/sleep">Egy mag 0%  </link>
         </para>
         <para>
-            <link xlink:href="https://github.com/raddanfea/prog1/blob/master/vciklpara">Osszes mag 100%  </link> Ehhez szukseges az openmp hasznalata.
+            <link xlink:href="https://github.com/raddanfea/prog1/blob/master/vciklpara">Összes mag 100%  </link> Ehhez szükseges az -openmp használata.
         </para>
         <para>
-            Ha egy felamatot elaltatunk, a mag 0% terhelt lesz.
-            Ha egy vegtelen ciklust futtatunk a mag 100% terhelt lesz.
-            Ha egy vegtelent ciklust paralell futtatunk minden magon, minden mag 100% terhelt lesz.
+            Ha egy feladat megáll vagy elaltatjuk a sleep paranccsal, a mag 0% terhelt lesz.
+            Ha egy végtelen ciklust futtatunk a mag 100% terhelt lesz, ugyanis végtelenszer ismétli önmagát.
+            Ha egy végtelent ciklust paralell futtatunk minden magon, minden mag 100% terhelt lesz.
         </para>            
     </section>        
         
@@ -43,7 +43,7 @@
         </para>
         <para>
             Megoldás forrása:  tegyük fel, hogy akkora haxorok vagyunk, hogy meg tudjuk írni a <function>Lefagy</function>
-            függvényt, amely tetszőleges programról el tudja dönteni, hogy van-e benne vlgtelen ciklus:              
+            függvényt, amely tetszőleges programról el tudja dönteni, hogy van-e benne vélgtelen ciklus:              
         </para>
         <programlisting language="c"><![CDATA[Program T100
 {
@@ -138,10 +138,10 @@ false]]></screen>
             Megoldás forrása:  <link xlink:href="https://github.com/raddanfea/prog1/blob/master/valtfelcs">Valtozo felcserelesek  </link>
         </para>
         <para>
-            Uj valtozoval: Bevezetunk egy uj valtozot amire "elmentjuk" az 'a' valtozon tarolt informaciot. Ekkor 'a' valtozot felulirhatjuk 'b' valtozoval majd a 'b' valtozot az uj valtozoval.
+            Új változóval: Bevezetunk egy új változot amire "elmentjük" az 'a' valtozón tárolt informaciót. Ekkor 'a' valtozot felülirhatjuk 'b' valtozóval majd a 'b' változót az új változoval.
         </para>
         <para>
-            Uj valtozo nelkul: Osszeadjuk a ket valtozot es magkapjuk az osszeguket az egyik valtozon(itt 'a'). A masik valtozon(itt 'b') kivinjuk az osszegbol('a') a 'b' valtozot, a maradek 'a' eredeti erteke lesz. Ez utan az osszeget tartalmazo valtozon('a') kivonuk az onmagambol 'b' erteket, ami jelenleg 'a' eredeti erteke, igy megkapjuk a 'b' eredeti erteket.        </para>
+            Új változó nélkül: Összeadjuk a két változót és magkapjuk az összeguket az egyik változon(itt 'a'). A másik változón(itt 'b') kivonjuk az összegből('a') a 'b' változót, a maradék 'a' eredeti érteke lesz. Ez után az összeget tartalmazó változón('a') kivonuk önmagából a 'b' értéket, ami jelenleg 'a' eredeti érteke, így megkapjuk a 'b' eredeti érteket.        </para>
     </section>                     
 
     <section>
@@ -158,10 +158,10 @@ false]]></screen>
             Megoldás forrása:  <link xlink:href="https://github.com/raddanfea/prog1/blob/master/labdapattogtatas">Labdapattogtatas  </link>
         </para>
         <para>
-        Megjegyzes: Minden esetben felvesszuk a kodhoz szukseges headert, amit a forrasban meg lehet talalni.
+        Megjegyzes: Minden esetben felvesszük a kódhoz szükseges headert, amit a forrasban meg lehet talalni.
         </para>
         <para>
-        Elkeszitjuk az ablakot a terminalbol es felvesszuk az adatait.
+        Elkészitjuk az ablakot a terminalbol es felvesszuk az adatait.
         </para>
         <para>
             <programlisting language="c"><![CDATA[
@@ -171,10 +171,10 @@ false]]></screen>
     </programlisting>   
         </para>
         <para>
-            Egy vegtelen for ciklusba fog a program futni, ugyanis nem lesz szukseg a labda megallitasara.
+            Egy végtelen for ciklusba fog a program futni, ugyanis most nem lesz szükseg a labda megállitasara.
         </para>
         <para>
-            Felveszunk ket valtozot (a for cikluson kivul) az ablak (x,y) meretenek tarolasara majd belementjuk az erteket minden cilusban. Ezt a forrasban megfeleztuk hogy csak az ablak feleig dolgozzunk.
+            Felveszunk két változot (a for cikluson kivül) az ablak (x,y) méretének tárolására majd belementjük az érteket minden ciklusban. Ezt a forrásban megfeleztük hogy csak az ablak feléig dolgozzunk.
         </para>
         <para>
             <programlisting language="c"><![CDATA[
@@ -183,7 +183,7 @@ false]]></screen>
             </programlisting>
         </para>
         <para>
-            Egyszeru forciklussal megrajzoljuk a hatarertekeket tetszoleges karakterekekkel, illetve a ket maxertekkel a legtavalobbi pontot, az ellentkezo sarkot.
+            Egyszerü forciklussal megrajzoljuk a határértékeket tetszőleges karakterekekkel, illetve a két maxértekkel a legtávolabbi pontot, az ellentkező sarkot. Ennek csak esztétikai jelentősége van.
         </para>
         <para>
             <programlisting language="c"><![CDATA[
@@ -194,7 +194,7 @@ false]]></screen>
             </programlisting>
         </para>
         <para>
-            Felveszunk ket uj valtozot a labda X,Y ertekeinek tarolasara a vegtelen cikluson kivul. Ez a labda kezdoerteke. Felrajzoljuk a labdat a jelenlegi poziciojara majd frissitjuk az ablakot, varunk hogy a mozgas emberi szemmel is eszlelheto legyen majd eltoroljuk az ablakon megjelenitett elemeket.
+            Felveszünk két új változót a labda X,Y értekeinek tárolásara a végtelen cikluson kivül. Ez a labda pozició kezdő érteke. Felrajzoljuk a labdát a jelenlegi poziciójára majd frissitjük az ablakot, várunk hogy a mozgás emberi szemmel is észlelhető legyen majd eltoröljuk az ablakon megjelenitett elemeket.
         </para>
         <para>
             <programlisting language="c"><![CDATA[
@@ -206,7 +206,7 @@ false]]></screen>
             </programlisting>
         </para>
         <para>
-            Felveszunk ket uj valtozot a labda mozgasi sebessege meghatarozasara es hozzaadjuk az erteket az elozo poziciohoz.
+            Felveszünk két új változot a labda mozgasi sebessége meghatározásara és hozzáadjuk az érteket az előzo pozicióhoz.
         </para>
         <para>
             <programlisting language="c"><![CDATA[
@@ -216,7 +216,7 @@ false]]></screen>
             </programlisting>
         </para>
         <para>
-            Egyszeru if fugvennyel ellenorizzuk hogy elerte-e a labda a hatarerteket. Ha elerte a sebesseget reciprokara allitjuk, ezzel a labda mozgasat az ellentkezo iranyba megforditva.
+            Egyszerű if fügvennyel ellenőrizzuk hogy elérte-e a labda a határérteket. Ha elérte a sebesseget reciprokara állitjuk, ezzel a labda mozgásat az ellentkező irányba megforditva.
         </para>
         <para>
             <programlisting language="c"><![CDATA[
@@ -254,7 +254,7 @@ main (void)
             </programlisting>
         </para>
         <para>
-            Az egy erteku valtozot a bitshift operatorral eltoljuk amig lehet es minden lepest megszamolunk. Az eremeny az ertek bit erteku merete.
+            Az egy érteku változot a bitshift operátorral eltoljuk amig lehet és minden lepést megszámolunk. Az eredmeny az értek bit árteku mérete. Ez a változó típusátol is függ.
         </para>
     </section>                     
 
@@ -268,7 +268,7 @@ main (void)
             Megoldás forrása:  <link xlink:href="https://github.com/raddanfea/prog1/blob/master/pagerank">Pagerank  </link>
         </para>
         <para>
-            Az alabbi funkcio kiirja a belevezettet ertekeket erkezesi sorrend szerint szazados helyiertekig.
+            Az alábbi funkció kiírja a belevezettet értékeket érkezesi sorrend szerint százados helyiértékig.
         </para>
         <para>
             <programlisting language="c"><![CDATA[
@@ -281,7 +281,7 @@ void kiir (double tomb[], int db)
             </programlisting>
         </para>
         <para>
-            Az alabbi funkcio kiszamolja a PageRank es a haterertek tavolsagat majd visszaadja azt double ertekkent.
+            Az alábbi funkció kiszámolja a PageRank és a határérték távolságát a négy oldal jóságának felhasználásával, majd visszaadja azt double értékkent.
         </para>
         <para>
             <programlisting language="c"><![CDATA[
@@ -299,10 +299,10 @@ double tavolsag (double PR[], double PRv[], int n)
             </programlisting>
         </para>
         <para>
-            A main-ben felvesszuk az odlalak linkjeinek szamat matrixkent, illetve a pagerankot es a hatarerteket vektorkent.
+            A main-ben felvesszük az oldalak linkjeinek számat mátrixként, illetve a pagerankot és a határértéket vektorkent.
         </para>
         <para>
-            Egy for fuggvenyben elkezdjuk a szamolast. Ezenbelul dupla for fugvennyel osszehasonlitjuk a matrix minden koordinataja felhasznalasaval a page "josagat".
+            Egy for függvényben elkezdjük a számolást. Ezen belül dupla for fügvénnyel összehasonlítjuk a mátrix minden koordinátájának felhasználásával a page "jóságat".
         </para>
         <para>
             <programlisting language="c"><![CDATA[
@@ -315,7 +315,7 @@ for(i = 0; i < 4; ++i)
             </programlisting>
         </para>
          <para>
-            Amennyiben a kulonbseg kisebb mint 0.00000001 akkor kilépünk a végtelen ciklusból, ha nem PRv-t feltoltjuk PR elemeivel. Vegul kiiratjuk az erteket.
+            Amennyiben a különbseg kisebb mint 0.00000001 akkor kilépünk a végtelen ciklusból, ha nem PRv-t feltöltjuk PR elemeivel. Ha ciklus véget ér, kiiratjuk az értékeket.
         </para>
         <para>
             <programlisting language="c"><![CDATA[
@@ -354,25 +354,25 @@ if(tavolsag (PR, PRv, 4) < 0.00000001)
             </programlisting>
         </para>
         <para>
-            1. sor kiszamolja a primeket x-ig.
+            1. sor kiszámolja a prímeket x-ig.
         </para>
         <para>
             2. sor az egymást követő prímek különbségét veszi. 3-2, 5-3, 7-5, 11-7, 13-11.
         </para>
         <para>
-            3. sor megnezi hol 2 a kulonbseg. Ahol igaz, azok ikerprim parok.
+            3. sor megnézi hol 2 a különbség. Ahol igaz, azok ikerprim párok.
         </para>
         <para>
-            4. sor a par elso tagjat eltarolja.
+            4. sor a pár első tagját eltárolja, ahol 3 teljesül.
         </para>
         <para>
-            5. sor a masodik tagot az elso+2 vel kepzi es tarolja.
+            5. sor a második tagot az első+2 vel képzi és tárolja, ahol 4 teljesül.
         </para>
         <para>
-            Vegul reciprokokat kepez, osszeadja oket majd visszaadja az erteket.
+            Vegül reciprokokat képez, összeadja őket majd visszaadja az érteket.
         </para>
         <para>
-            A forras tovabbi reszeben kirajzoltatjuk és lathatjuk, hogy egy felso hatarhoz konvergalnak az osszegek.
+            A forrés további részében kirajzoltatjuk és láthatjuk, hogy egy felso határhoz konvergálnak az összegek.
         </para>
         
         
@@ -390,19 +390,19 @@ if(tavolsag (PR, PRv, 4) < 0.00000001)
             Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/MontyHall_R">https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/MontyHall_R</link>
         </para>
         <para>
-          A program veletlen eseteket general. Meghatarozzuk akiserletek szamat majd a jatekos vektorban veletlenszeruen megadjuk mit valaszt esetenkent. A musorvezeto vektora a kiserletek szama.
+          A program véletlen eseteket generál. Meghatározzuk a kísérletek számat majd a játékos vektorban véletlenszerüen megadjuk mit választ esetenkent. A vektorok mérete a kisérletek számával egyenlő.
         </para>
         <para>
-            Egy for ciklussal vegig megyunk a kiserletek szaman es megnezzuk hogy eltalata e az eredmenyt.
+            Egy for ciklussal végigmegyünk a kisérletek száman és megnézzuk hogy eltalálta-e az eredményt.
         </para>
         <para>
-           Ha nem talalta el, a musorvezeto kap pontot.
+           Ha nem találta el, a műsorvezető kap pontot.
         </para>
         <para>
-           Kiertekeljuk hogy hanyszor nyert valtoztatassal, illetve nelkule.
+           Ha nyer, kiértékeljuk hogy hányszor nyert volna változtatás nélkül. Egyéb esetekben változtatással nyert volna.
         </para>
         <para>
-           Kiiratjuk az eredmenyeket..
+           Megszámoljuk a vektorokon az eseményeket majd kiiratjuk az eredményeket..
         </para>
     </section>
 
