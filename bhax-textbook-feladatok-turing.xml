@@ -144,6 +144,10 @@ false]]></screen>
              A megállás csak akkor lehetséges, ha a T100 nem áll meg, de ez pedig csak akkor lehet, ha a második argumentumként kapott saját programunk megáll.
          </para>
          <para>Ebből ellentmondásra jutottunk, tehát nem lehet ilyen programot írni.</para>
+         <para>A program amit oda adunk lefagyó, ekkora a programunk igazat kellene visszaadjon, de nem ad vissza semmit mert lefagy.</para>
+         <para>A program amit oda adunk nem lefagyó, emiatt a program lefagy és nem tud kilépni.</para>
+         <para>Mivel ez egy paradoxon ezért nem lehet ilyen programot írni.</para>
+         <para>Amennyiben a programnak önmagát adjuk meg paraméterként P1(P2(P3(P4))), és a program akkor adna ki eredményt ha a bementi program lefagyó, ebben az esetben a kód soha nem jut el a programig. Ez a végtelenségig is lehet ismételni, az eredmény nem változik.</para>
     </section>        
                 
     <section>
@@ -184,10 +188,10 @@ int main()
         </programlisting>
         </para>
         <para>
-            Új változóval: Bevezetunk egy új változot amire "elmentjük" az 'a' valtozón tárolt informaciót. Ekkor 'a' valtozot felülirhatjuk 'b' valtozóval majd a 'b' változót az új változoval.
+            Új változóval: Bevezetünk egy új változót amire "elmentjük" az 'a' változón tárolt informaciót. Ekkor 'a' változót felülirhatjuk 'b' változóval majd a 'b' változót az új változóval.
         </para>
         <para>
-            Új változó nélkül: Összeadjuk a két változót és magkapjuk az összeguket az egyik változon(itt 'a'). A másik változón(itt 'b') kivonjuk az összegből('a') a 'b' változót, a maradék 'a' eredeti érteke lesz. Ez után az összeget tartalmazó változón('a') kivonuk önmagából a 'b' értéket, ami jelenleg 'a' eredeti érteke, így megkapjuk a 'b' eredeti érteket.        </para>
+            Új változó nélkül: Összeadjuk a két változót és magkapjuk az összegüket az egyik változón(itt 'a'). A másik változón(itt 'b') kivonjuk az összegből('a') a 'b' változót, a maradék 'a' eredeti érteke lesz. Ez után az összeget tartalmazó változón('a') kivonuk önmagából a 'b' értéket, ami jelenleg 'a' eredeti érteke, így megkapjuk a 'b' eredeti érteket.        </para>
     </section>                     
 
     <section>
@@ -207,7 +211,7 @@ int main()
         Megjegyzes: Minden esetben felvesszük a kódhoz szükseges headert, amit a forrasban meg lehet talalni.
         </para>
         <para>
-        Elkészitjuk az ablakot a terminalbol es felvesszuk az adatait.
+        Elkészitjuk az ablakot a terminálból es felvesszuk az adatait.
         </para>
         <para>
             <programlisting language="c"><![CDATA[
@@ -217,7 +221,7 @@ int main()
     </programlisting>   
         </para>
         <para>
-            Egy végtelen for ciklusba fog a program futni, ugyanis most nem lesz szükseg a labda megállitasara.
+            Egy végtelen for ciklusba fog a program futni, ugyanis most nem lesz szükség a labda megállitásara.
         </para>
         <para>
             Felveszunk két változot (a for cikluson kivül) az ablak (x,y) méretének tárolására majd belementjük az érteket minden ciklusban. Ezt a forrásban megfeleztük hogy csak az ablak feléig dolgozzunk.
@@ -240,7 +244,7 @@ int main()
             </programlisting>
         </para>
         <para>
-            Felveszünk két új változót a labda X,Y értekeinek tárolásara a végtelen cikluson kivül. Ez a labda pozició kezdő érteke. Felrajzoljuk a labdát a jelenlegi poziciójára majd frissitjük az ablakot, várunk hogy a mozgás emberi szemmel is észlelhető legyen majd eltoröljuk az ablakon megjelenitett elemeket.
+            Felveszünk két új változót a labda X,Y értekeinek tárolására a végtelen cikluson kivül. Ez a labda pozició kezdő érteke. Felrajzoljuk a labdát a jelenlegi poziciójára majd frissitjük az ablakot, várunk hogy a mozgás emberi szemmel is észlelhető legyen majd eltöröljuk az ablakon megjelenitett elemeket.
         </para>
         <para>
             <programlisting language="c"><![CDATA[
@@ -252,7 +256,7 @@ int main()
             </programlisting>
         </para>
         <para>
-            Felveszünk két új változot a labda mozgasi sebessége meghatározásara és hozzáadjuk az érteket az előzo pozicióhoz.
+            Felveszünk két új változot a labda mozgasi sebessége meghatározásara és hozzáadjuk az érteket az előző pozicióhoz.
         </para>
         <para>
             <programlisting language="c"><![CDATA[
@@ -262,7 +266,7 @@ int main()
             </programlisting>
         </para>
         <para>
-            Egyszerű if fügvennyel ellenőrizzuk hogy elérte-e a labda a határérteket. Ha elérte a sebesseget reciprokara állitjuk, ezzel a labda mozgásat az ellentkező irányba megforditva.
+            Egyszerű if fügvennyel ellenőrizzuk hogy elérte-e a labda a határérteket. Ha elérte a sebességet reciprokara állitjuk, ezzel a labda mozgásat az ellentkező irányba megforditva.
         </para>
         <para>
             <programlisting language="c"><![CDATA[
@@ -300,7 +304,7 @@ main (void)
             </programlisting>
         </para>
         <para>
-            Az egy érteku változot a bitshift operátorral eltoljuk amig lehet és minden lepést megszámolunk. Az eredmeny az értek bit árteku mérete. Ez a változó típusátol is függ.
+            Az egy értekű változot a bitshift operátorral eltoljuk amig lehet és minden lepést megszámolunk. Az eredmeny az értek bit értékű mérete. Ez a változó típusátol is függ.
         </para>
     </section>                     
 
@@ -418,8 +422,10 @@ if(tavolsag (PR, PRv, 4) < 0.00000001)
             Vegül reciprokokat képez, összeadja őket majd visszaadja az érteket.
         </para>
         <para>
-            A forrás további részében kirajzoltatjuk és láthatjuk, hogy egy felso határhoz konvergálnak az összegek.
+            A forrás további részében kirajzoltatjuk és láthatjuk, hogy egy felső határhoz konvergálnak az összegek.
         </para>
+        <mediaobject><imageobject> <imagedata fileref="Brun.png" format="png" scale="70"/> </imageobject></mediaobject>
+
         
         
     </section>
@@ -482,7 +488,7 @@ length(nemvaltoztatesnyer)+length(valtoztatesnyer)
             </programlisting>
         </para>
         <para>
-          A program véletlen eseteket generál. Meghatározzuk a kísérletek számat majd a játékos vektorban véletlenszerüen megadjuk mit választ esetenkent. A vektorok mérete a kisérletek számával egyenlő.
+          A program véletlen eseteket generál. Meghatározzuk a kísérletek számat majd a játékos vektorban véletlenszerüen megadjuk mit választ a játékos esetenként. A vektorok mérete a kisérletek számával egyenlő.
         </para>
         <para>
             Egy for ciklussal végigmegyünk a kisérletek száman és megnézzuk hogy eltalálta-e az eredményt.
@@ -491,10 +497,10 @@ length(nemvaltoztatesnyer)+length(valtoztatesnyer)
            Ha nem találta el, a műsorvezető kap pontot.
         </para>
         <para>
-           Ha nyer, kiértékeljuk hogy hányszor nyert volna változtatás nélkül. Egyéb esetekben változtatással nyert volna.
+           Ha nyer, kiértékeljük hogy hányszor nyert volna változtatás nélkül. Egyéb esetekben változtatással nyert volna.
         </para>
         <para>
-           Megszámoljuk a vektorokon az eseményeket majd kiiratjuk az eredményeket..
+           Megszámoljuk a vektorokon az eseményeket majd kiiratjuk az eredményeket.
         </para>
     </section>
 

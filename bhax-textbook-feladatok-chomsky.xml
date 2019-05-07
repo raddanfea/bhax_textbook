@@ -11,30 +11,19 @@
             Állapotátmenet gráfjával megadva írd meg ezt a gépet!
         </para>
         <para>
-            Megoldás forrása:                
+            Kép forrása: Dr. Bátfai Norbert Prog. 1 előadása.        
         </para>
-        <para>
-            <programlisting language="c"><![CDATA[
-#include <iostream>
-#include <string>
-using namespace std;
-int
-main ( void )
-{
-int num;
-string output;
-cin >> num;
-for(int i=0;i<num;++i) {output.append("1");}
-cout << output << "\n";
-}]]>
-            </programlisting>
-        </para>
+        <mediaobject><imageobject> <imagedata fileref="turing.png" format="png" scale="70"/> </imageobject></mediaobject>
         <para>
             Unáris szám annyi 1-es karakterből áll, ahány az értéke.
             
             Megadunk egy int értéket majd létrehozunk egy üres kimeneti stringet.
-            A for függvény annyiszor fut le ahány a bementi számunk.
-            Minden esetben hozzáad(appendál) egy karaktert a stringhez, ami egy 1-es karakter.
+            A for függvény annyiszor fut le ahány a bementi számunk. 
+            <programlisting language="c"><![CDATA[
+        for (i;i=0;i--)
+        ]]>
+            </programlisting> 
+            Minden esetben hozzáad(appendál) egy 1-es karaktert a stringhez.
             Végül kiiratjuk a stringet.
         </para>
     </section>        
@@ -43,6 +32,9 @@ cout << output << "\n";
         <title>Az a<superscript>n</superscript>b<superscript>n</superscript>c<superscript>n</superscript> nyelv nem környezetfüggetlen</title>
         <para>
             Mutass be legalább két környezetfüggő generatív grammatikát, amely ezt a nyelvet generálja!
+        </para>
+        <para>
+       A Chomsky féle nyelvhierarhia az a számítógépes értelmezés alapja. E nélkül a program nem érti meg a kontextust és nem képes olyan eredményeket visszaadni amire várunk.
         </para>
         <para>
         S->abc|A
@@ -93,12 +85,11 @@ cout << output << "\n";
            
         </para>
         <para>
-            Megoldás forrása:
             <programlisting language="c"><![CDATA[
                 long long int
     ]]>
             </programlisting>  
-            Új adattípus a C99 nyelvben. Explicit boolen adattípus komplex számokhoz. 32 bit méret, [−2,147,483,647, +2,147,483,647] közötti értékkel.
+            Új adattípus a C99 nyelvben. Explicit specifikáció adattípus komplex számokhoz. 32 bit méret, [−2,147,483,647, +2,147,483,647] közötti értékkel.
         </para>
         <para>
             Aritmetikai és vezérlő utasítások függvényen belül, blokkban helyezkednek el. A tevékenység pontos megfogalmazása amit nem lehet részletezni, pontos jelentéssel bír.

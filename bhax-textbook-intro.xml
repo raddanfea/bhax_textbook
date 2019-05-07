@@ -12,11 +12,12 @@
             </keywordset>
         </info>
         <section>
-            <title>Mi a programozás?</title>
+            <title>Források:</title>
             <para>                  
-                          
+            Bármely nem saját kód a <link xlink:href="https://gitlab.com/nbatfai/bhax/tree/master">BHAX</link> vagy az <link xlink:href="https://sourceforge.net/p/udprog/code/ci/master/tree/">udprog</link> repókból származnak.
             </para>
         </section>
+        
         <section>
             <title>Milyen doksikat olvassak el?</title>
             <itemizedlist>

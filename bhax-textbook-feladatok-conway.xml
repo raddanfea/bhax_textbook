@@ -15,11 +15,145 @@
             Megoldás videó: <link xlink:href="https://bhaxor.blog.hu/2018/10/10/myrmecologist">https://bhaxor.blog.hu/2018/10/10/myrmecologist</link>
         </para>
         <para>
-            Megoldás forrása: <link xlink:href=""></link>               
+            Megoldás forrása:  <link xlink:href="https://gitlab.com/fupn26/bhax/tree/master/attention_raising/Myrmecologist">https://gitlab.com/fupn26/bhax/tree/master/attention_raising/Myrmecologist</link>                
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
+            A forrásban megadott kód 7 fájlból áll. egy .pro összefoglaló fájl ami megmutatja nekünk hogy 3 forrásunk és 3 header fájlunk van.
+        </para>
+        <para>
+            <filename>ant.h:</filename>
+        </para>
+
+<programlisting language="c"><![CDATA[
+        
+            #ifndef ANT_H
+#define ANT_H
+
+class Ant
+{
+
+public:
+    int x;
+    int y;
+    int dir;
+
+    Ant(int x, int y): x(x), y(y) {
+        
+        dir = qrand() % 8;
+        
+    }
+
+};
+
+typedef std::vector<Ant> Ants;
+
+#endif
+
+        ]]>
+            </programlisting> 
+        <para>
+            Definiáljuk a hangyát mint objektum és adunk neki poziciót és irányt véletlenszerüen.
+        </para> 
+        <para>
+            typedef-el megadjuk hogy az objektum vektora az "ants" legyen.
+        </para>
+        <para>                    
+            <filename>antthread.h</filename>
+        </para>
+
+        <para>
+            Az ant.h és qtread felhasználásával létrehozzuk anz Anttread osztályt és Q_OBJECT makrózzuk.
+        </para> 
+        <para>
+            Egy osztály egy threadnek felel meg.
+        </para> 
+        <para>
+            Létrehozzuk a finish,  pause és az isrunning funkciót a kezeléséhez.
+        </para> 
+        <para>
+            Deklaráljuk a <function>timeDevel</function>, <function>newDir</function>, <function>detDirs</function>, <function>moveAnts</function>, <function>sumNbhs</function>, <function>setPheromones</function> funkciókat.
+        </para>  
+        <para>
+            <filename>antwin.h</filename>
+        </para>
+                
+                <para>
+                    Megadjuk az AntWin osztályt, ami a QMainWindow gyermeke. Itt a Q_OBJECT makróra slot megadása miatt lesz szükség.
+                </para>
+                <para>
+                    Deklaráljuk a konstruktort, destruktort, és a <function> paintEvent</function> függvényt.
+                </para>
+                <para>
+                    Megadjuk a <function>closeEvent</function> és <function>keyPressEvent</function> függvényeket.
+                    Az ablak bezárásakor leállítja a szálat, a Q(kilépés) és P(szünet) valamint az Esc(kilépés) gombok lenyomását kezelik.
+                </para>
+    <para>
+        <filename>antthread.cpp függvényei:</filename>
+    </para>
+        <para>
+            Konstruktor:
+        </para>
+        <para>
+            Értéket ad a  változóknak, és elhelyezi a hangyákat a rácson.
+        </para>
+        <para>
+            sumNbhs()
+        </para>
+        <para>
+            Megszámolja a cella szomszédait.
+        </para>
+        <para>
+            newDir()
+        </para>
+        <para>
+            Ha új irányt kell adni egy hangyának akkor azt ez a függvény kezeli.
+        </para>
+        <para>
+            detDirs()
+        </para>
+        <para>
+            A hangya iránya alapján megadja, hogy merre megy.
+        </para>
+        <para>
+            moveAnts()
+        </para>
+        <para>
+            Ez a függvény mozgat egy adott hangyát.
+        </para>
+        <para>
+            timeDevel()
+        </para>
+        <para>
+            Az összes hangyát mozgatja.
+        </para>
+        <para>
+            setPheromone()
+        </para>
+        <para>
+            Beállítja a feromonokat az adott cellán. <function>timeDevel()</function> használja.
+        </para>
+        <para>
+            run()
+        </para>
+        <para>
+            A foylamatos loop itt valósul meg. Itt lesz a szünet és a megállás is kezelve.
+        </para>
+        <para>
+            Destruktor:
+        </para>
+        <para>
+            Elpusztítja a hangyákat és a tömböt amiben tároltuk őket.
+        </para>
+        <para>
+            <filename>antwin.cpp</filename>   függvényei:
+        </para>
+        <para>
+            Kezeli az ablakot és a rajzoló threadet.
+        </para>
+
+
+                                                      
+                                                                                      
     </section>        
     <section>
         <title>Java életjáték</title>
@@ -27,14 +161,57 @@
             Írd meg Java-ban a John Horton Conway-féle életjátékot, 
             valósítsa meg a sikló-kilövőt!
         </para>
-        <para>
-            Megoldás videó: 
-        </para>
-        <para>
-            Megoldás forrása: <link xlink:href=""></link>               
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
+        <para>  
+            <programlisting><![CDATA[
+            public Sejtautomata(int szélesség, int magasság) {
+                    this.szélesség = szélesség;
+                    this.magasság = magasság;
+                    rácsok[0] = new boolean[magasság][szélesség];
+                    rácsok[1] = new boolean[magasság][szélesség];
+                    rácsIndex = 0;
+                    rács = rácsok[rácsIndex];
+                    for(int i=0; i<rács.length; ++i)
+                        for(int j=0; j<rács[0].length; ++j)
+                            rács[i][j] = HALOTT;
+                    siklóKilövő(rács, 5, 60);
+                    addWindowListener(new java.awt.event.WindowAdapter() {
+                        public void windowClosing(java.awt.event.WindowEvent e) {
+                            setVisible(false);
+                            System.exit(0);
+                    }
+            });]]></programlisting> 
+
+                    
+                    A felhasználói interaktivitás kezelésére létre kell hoznunk egy KeyListenert, 
+                        amely  abillentyűzetről kapott leütéseket figyeli és kezeli le és kezeli a funkciókat.
+                    
+
+            <programlisting><![CDATA[
+            addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyPressed(java.awt.event.KeyEvent e) {
+                            if(e.getKeyCode() == java.awt.event.KeyEvent.VK_K) {
+                                cellaSzélesség /= 2;
+                                cellaMagasság /= 2;
+                                setSize(Sejtautomata.this.szélesség*cellaSzélesség,
+                                        Sejtautomata.this.magasság*cellaMagasság);
+                                validate();
+                        } else if(e.getKeyCode() == java.awt.event.KeyEvent.VK_N) {
+                                cellaSzélesség *= 2;
+                                cellaMagasság *= 2;
+                                setSize(Sejtautomata.this.szélesség*cellaSzélesség,
+                                        Sejtautomata.this.magasság*cellaMagasság);
+                                validate();
+                        } else if(e.getKeyCode() == java.awt.event.KeyEvent.VK_S)
+                                pillanatfelvétel = !pillanatfelvétel;
+                            else if(e.getKeyCode() == java.awt.event.KeyEvent.VK_G)
+                                várakozás /= 2;
+                            else if(e.getKeyCode() == java.awt.event.KeyEvent.VK_L)
+                                várakozás *= 2;
+                            repaint();
+                    }
+            });          
+            ]]></programlisting> 
+
         </para>            
     </section>        
     <section>
@@ -43,28 +220,157 @@
             Most Qt C++-ban!
         </para>
         <para>
-            Megoldás videó: 
+<programlisting><![CDATA[
+SejtAblak::SejtAblak(int szelesseg, int magassag, QWidget *parent)
+    : QMainWindow(parent)
+{
+    setWindowTitle("A John Horton Conway-féle életjáték");
+
+    this->magassag = magassag;
+    this->szelesseg = szelesseg;
+
+    cellaSzelesseg = 6;
+    cellaMagassag = 6;
+
+    setFixedSize(QSize(szelesseg*cellaSzelesseg, magassag*cellaMagassag));
+
+    racsok = new bool**[2];
+    racsok[0] = new bool*[magassag];
+    for(int i=0; i<magassag; ++i)
+        racsok[0][i] = new bool [szelesseg];
+    racsok[1] = new bool*[magassag];
+    for(int i=0; i<magassag; ++i)
+        racsok[1][i] = new bool [szelesseg];
+
+    racsIndex = 0;
+    racs = racsok[racsIndex];
+
+    for(int i=0; i<magassag; ++i)
+        for(int j=0; j<szelesseg; ++j)
+            racs[i][j] = HALOTT;
+       ]]></programlisting> 
+	</para> 
+        <para>
+            Létrehozzuk az ablakot méretre, legenráljuk ohzzá a mátrixot és kezeljük a sejteket melyek alapból halottak.
         </para>
         <para>
-            Megoldás forrása: <link xlink:href=""></link>               
+<programlisting><![CDATA[
+    siklo(racs, 2, 2);
+    sikloKilovo(racs, 5, 60);
+
+
+    eletjatek = new SejtSzal(racsok, szelesseg, magassag, 120, this);
+    eletjatek->start();
+
+}
+       ]]></programlisting> 
+	</para>
+        <para>
+            Meghatározunk pár élő sejtet és elindutjuk a szimulációt.
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
+            Végül létrehozzuk a paintEvent() függvényt, mely a rácsot és a sejteket rajzolja ki. 
+            Ha az adott sejt élő akkor feketével, ha halott akkor fehérrel jelöljük.
+	</para>
+        <programlisting><![CDATA[
+        void SejtAblak::paintEvent(QPaintEvent*) {
+            QPainter qpainter(this);
+
+
+            bool **racs = racsok[racsIndex];
+
+            for(int i=0; i<magassag; ++i) { // végig lépked a sorokon
+                for(int j=0; j<szelesseg; ++j) { // s az oszlopok
+                    // Sejt cella kirajzolása
+                    if(racs[i][j] == ELO)
+                        qpainter.fillRect(j*cellaSzelesseg, i*cellaMagassag,
+                                          cellaSzelesseg, cellaMagassag, Qt::black);
+                    else
+                        qpainter.fillRect(j*cellaSzelesseg, i*cellaMagassag,
+                                          cellaSzelesseg, cellaMagassag, Qt::white);
+                    qpainter.setPen(QPen(Qt::gray, 1));
+
+                    qpainter.drawRect(j*cellaSzelesseg, i*cellaMagassag,
+                                      cellaSzelesseg, cellaMagassag);
+                }
+            }
+
+            qpainter.end();
+        }
+       ]]></programlisting> 
+
+
+         
     </section>        
     <section>
         <title>BrainB Benchmark</title>
+        
         <para>
+            Megoldás forrása: <link xlink:href="https://github.com/nbatfai/esport-talent-search">https://github.com/nbatfai/esport-talent-search</link>               
         </para>
         <para>
-            Megoldás videó: 
+            Az ablakban megjelenik egy objektum (Samu Entropy) és rajta kell tartani az egeret, míg az mozog. 
+            Ennek nehezítésére újabb objektumok is megjelennek az ablakban. 
+            A mozgatást x és y mentén is úgy oldjuk meg, hogy az előző értékhez hozzáadunk egy számot, 
+            mely egy random és az objektumra jellemző "agility" szorzata. Így érjük el a kiszámíthatatlan mozgást, 
+            ami az objektum mozgékonyságától is függ. Továbbá megszorítást is kell kötni, miszerint ha nem érjük el az ablak szélét, 
+            csak abban az esetben alkalmazzuk a mozgást.
         </para>
         <para>
-            Megoldás forrása: <link xlink:href=""></link>               
+<programlisting><![CDATA[
+    void move ( int maxx, int maxy, int env ) {
+
+        int newx = x+ ( ( ( double ) agility*1.0 ) * ( double ) ( std::rand() / ( RAND_MAX+1.0 ) )-agility/2 ) ;
+        if ( newx-env > 0 && newx+env < maxx ) {
+            x = newx;
+        }
+        int newy = y+ ( ( ( double ) agility*1.0 ) * ( double ) ( std::rand() / ( RAND_MAX+1.0 ) )-agility/2 );
+        if ( newy-env > 0 && newy+env < maxy ) {
+            y = newy;
+        }
+
+    }
+
+};              ]]></programlisting>   
+        </para> 
+
+        <para>
+		Ez a BrainBThread osztály. Ez a benchmrkért felelős.        
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
-    </section>        
+<programlisting><![CDATA[
+void BrainBThread::run()
+{
+        while ( time < endTime ) {
+
+                QThread::msleep ( delay );
+                if ( !paused ) {
+                        ++time;
+                        devel();
+                }
+                draw();
+        }
+        emit endAndStats ( endTime );
+}
+void BrainBThread::pause()
+{
+        paused = !paused;
+        if ( paused ) {
+                ++nofPaused;
+        }
+}
+
+void BrainBThread::set_paused ( bool p )
+{
+        if ( !paused && p ) {
+                ++nofPaused;
+        }
+        paused = p;
+}
+]]></programlisting> 
+        </para>   
+    </section>  
+            
+          
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 </chapter>                

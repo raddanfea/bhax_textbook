@@ -14,15 +14,78 @@
             nincs eltéve kiszámolt szám.
         </para>
         <para>
-            Megoldás videó:
-        </para>
+            <programlisting language="c"><![CDATA[
+#include <cstdlib>
+#include <cmath>
+#include <ctime>
+#include <iostream>
+class PolarGen
+    {
+    public:
+      PolarGen ()
+      {
+        nincsTarolt = true;
+        std::srand (std::time (NULL));
+      }
+       ~PolarGen ()
+      {
+
+      }
+    double kovetkezo ()
+            {
+              if (nincsTarolt)
+                {
+                  double u1, u2, v1, v2, w;
+                  do
+                    {
+                      u1 = std::rand () / (RAND_MAX + 1.0);
+                      u2 = std::rand () / (RAND_MAX + 1.0);
+                      v1 = 2 * u1 - 1;
+                      v2 = 2 * u2 - 1;
+                      w = v1 * v1 + v2 * v2;
+                    }
+                  while (w > 1);
+
+                  double r = std::sqrt ((-2 * std::log (w)) / w);
+
+                  tarolt = r * v2;
+                  nincsTarolt = !nincsTarolt;
+
+                  return r * v1;
+                }
+              else
+                {
+                  nincsTarolt = !nincsTarolt;
+                  return tarolt;
+                }
+            }
+        private:
+          bool nincsTarolt;
+          double tarolt;
+        };
+
+int main (int argc, char **argv)
+    {
+      PolarGen pg;
+
+      for (int i = 0; i < 10; ++i)
+        std::cout << pg.kovetkezo () << std::endl;
+
+      return 0;
+    }
+]]>
+            </programlisting>
+        </para> 
         <para>
-            Megoldás forrása:                
-        </para>
+        Az objektumorientált programozás (OOP) olyan módszert nyújt a programozók számára, 
+        amely lehetővé teszi a programok bonyolultságának csökkentését, a megbízhatóság és a hatékonyság növelését.
+        Objektumokból, a valós világ elemeinek programozási modelljeiből építi fel a programot.
+
+        </para>  
         <para>
-            Tanulságok, tapasztalatok, magyarázat... térj ki arra is, hogy a JDK forrásaiban a Sun programozói
-            pont úgy csinálták meg ahogyan te is, azaz az OO nemhogy nem nehéz, hanem éppen természetes neked!
-        </para>                
+            Osztályokatat definiálhatjuk változókkal és funkciókkal amelyet konstruktorként meghivhatunk létrehozva egy példányt az osztály mintájára.
+            Megszabhatjuk hogy honna érhető el egy funkció vagy változó az osztályban. Lehet protected, private vagy public.
+        </para>              
     </section>        
 
     <section>
@@ -31,10 +94,23 @@
             Valósítsd meg C-ben az LZW algoritmus fa-építését!
         </para>
         <para>
-            Megoldás videó:
+             Az LZW (Lempel-Ziv-Welch) tömörítési algoritmust Terry Welch amerikai informatikus publikálta 1984-ben. 
+             A kiírásra kerülô kódok általában 12 bitesek, így a sztringtáblába 4096 bejegyzés fér. 
+             Az elsô 256 bejegyzésbe elôzôleg az egyszerû ASCII karakterek, 256-tól 4095-ig pedig a tömörítés során a byte-csoportok kerülnek.  
+       </para>
+        <para>
+             Szükség lesz egy rekordra, amely a fának az elemeit tartalmazza.
+             Lesznek bal oldali gyermeikei, amelyekben 0-k fognak szerepelni, illetve lesznek jobb oldaliak, azokban pedig 1-esek.
+             Objektum-orientált programozási nyelvekben erre a célra classt használunk.
+             A C nyelvben erre a célra 'struktúrákat' használunk. 
         </para>
         <para>
-            Megoldás forrása:                
+             Szükség lesz egy olyan függvényre, amely képes új elemek létrehozására, a gyökér, és az egyes és nullás elemek számára.
+        </para>
+        <para>
+            Az  'uj_elem()' függvény által vissza adott mutató által címzett helyre kerül ezáltal,
+            értéke a speciális gyökér érték lesz. Ezt követően beállítjuk 'nullpointer'-re a gyökér által mutatott egyes, valamint nullás gyermeket.
+            Végül a fa mutató a gyökérre fog mutatni.
         </para>
     </section>        
         
@@ -44,11 +120,15 @@
             Járd be az előző (inorder bejárású) fát pre- és posztorder is!
         </para>
         <para>
-            Megoldás videó:
+            Preorder, inorder, és posztorder bejárások léteznek attól függően, hogy a gyökér-elem kiírása hol történik meg.          
         </para>
         <para>
-            Megoldás forrása:                
+             A preorder: először gyökér, majd egyes aztán nullás elemek.
         </para>
+        <para>
+             A posztorder: először egyes, majd nullás, aztán gyökér.              
+        </para>
+        
     </section>        
                         
     <section>
@@ -58,10 +138,12 @@
             osztálya. A gyökér csomópont legyen kompozícióban a fával!
         </para>
         <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:                
+            
+            A <![CDATA[kiFile << binFa]]> azt jelenti tagfüggvényként, hogy a kiFile valamilyen <![CDATA[std::ostream]]> stream osztály forrásába kellene beleírni ezt a tagfüggvényt, 
+            amely ismeri a mi LZW binfánkat (<![CDATA[kiFile.operator<<(binFa)]]>).
+            Globális függvényként pedig: <![CDATA[operator<<(kiFile, binFa)]]>.
+            A bemenetet binárisan olvassuk, de a kimenő fájlt már karakteresen írjuk.
+
         </para>
     </section>        
                 
@@ -72,10 +154,10 @@
             fával!
         </para>
         <para>
-            Megoldás videó: 
-        </para>
-        <para>
-            Megoldás forrása:  
+            A famutatót ráállítjuk a gyökérre a konstruktorban, amit alul hozunk létre.
+            A gyökér is mutató lesz, ezért az előző forrásban mindenhol, ahol referenciaként adtuk át a gyökeret a famutatónak, referencia nélkül tesszük. 
+            A konstruktorban a gyökének helyet foglalunk a memóriában és erre állítjuk a fát rá.
+            A szabadításkor pont helyett nyilat használunk, ha mutató mutatóit kérjük.
         </para>
     </section>                     
 
@@ -86,10 +168,10 @@
             értékadásra alapozva!
         </para>
         <para>
-            Megoldás videó: 
-        </para>
-        <para>
-            Megoldás forrása:  
+            A paraméterként átadott fa gyökerének az elemeit átadjuk az üres fának, majd a mozgatott fa elemeit kinullázzuk.
+            Ezután az <function>std::move</function> függvénnyel átmozgatjuk az egyes
+            elemeket, és végül kiírjuk az új fát.
+            Az eredeti binFát már nem tudnánk kinyomni, mert azt nulláztuk.
         </para>
     </section>                     
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         

@@ -1,0 +1,161 @@
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <info>
+        <title>Helló, Gutenberg!</title>
+        <keywordset>
+            <keyword/>
+        </keywordset>
+    </info>
+    
+    
+    <section>
+        <title>A kivételkezelés alapfogalmai, kivételkezelési módszerek és eszközrendszerek 11. hét</title>
+        <para>  
+            Különböző szabályos és szabálytalan kilépéseket kezelhetünk amennyiben előre definiáljuk azokat.  
+        </para>
+    </section>
+    <section>
+        <title>A programnyelvek I/O eszközei, állománykezelés 9. óra</title>
+        <para>
+        input állomány: a feldolgozás elıtt már léteznie kell, és a feldolgozás során változatlanmarad, csak olvasni lehet belőle.
+        </para>
+        <para>
+        output állomány: a feldolgozás elıtt nem létezik, a feldolgozás hozza létre, csak írni lehet bele.    
+        </para>
+        <para>
+        input-output állomány: általában létezik a feldolgozás elıtt és létezik a feldolgozás után is,
+        de a tartal ma megváltozik, olvasni és írni is lehet.     
+        </para>
+        <para> 
+            C:   
+        </para>
+        <para>
+            Az I/O eszközrendszer nem része a nyelvnek. Standard könyvtári függvények állnak
+            rendelkezésére. Létezik a bináris és a folyamatos módú átvitel, ez utóbbinál egy formátumos
+            és egy szerkesztett átvitel keverékeként. Szeriális szerkezetet kezel fix és változó
+            rekordformátummal. Az I/O függvények minimálisan egy karakter vagy karaktercsoport,
+            illetve egy bájt vagy bájtcsoport írását és olvasását teszik lehetıvé.     
+        </para>
+    </section>
+    
+    <section>
+        <title>Blokk. Hatáskörkezelés, láthatóság. Fordítási egység. Absztrakt adattípus. Generikus programozás 8. óra</title>
+        <para>
+                    A blokk olyan programegység, amely csak másik programegység belsejében helyezkedhet el,
+        külsı szinten nem állhat. 
+        </para>
+        <para>
+        Formálisan a blokknak van kezdete, törzse és vége. A kezdetet és a véget egy-egy speciális
+karaktersorozat vagy alapszó jelzi.  
+        </para>
+        <para>
+            Blokkot aktivizálni vagy úgy lehet, hogy szekvenciálisan rákerül a vezérlés, vagy úgy, hogy
+GOTO-utasítással ráugrunk a kezdetére. Egy blokk befejezıdhet, ha elértük a végét, vagy
+GOTO-utasítással kilépünk belıle, vagy befejeztetjük az egész programot a blokkban. 
+
+        </para>
+        <para>
+            A hatáskör a nevekhez kapcsolódó fogalom. Egy név hatásköre alatt értjük a program
+szövegének azon részét, ahol az adott név ugyanazt a programozási eszközt hivatkozza, tehát
+jelentése, felhasználási módja, jellemzıi azonosak. A hatáskör szinonimája a láthatóság. 
+        </para>
+    </section>
+    <section>
+        <title>Paraméterkiértékelés, paraméterátadás 7. óra</title>
+        <para>
+            érték szerinti  - aktuális param értéke a címre másolódik
+hívott, form. param van címkomponense
+        </para>
+        <para>
+            cím szerinti -  cím másolódik
+hívott, form. param
+        </para>
+        <para>
+            eredmény szerinti - aktuális param címe másolódik, de nem használja csak a végén amikor a form param értékét a címre másolja
+hívott, form. param van címkomponense
+        </para>
+        <para>
+            érték-eredmény szerinti  - aktutális param értéke (kezdőérték lesz a formálisnak) és címe másolódik, de a címet nem használja csak a végén amikor a form param értékét a címre másolja
+hívott, form. param van címkomponense
+        </para>
+    </section>  
+    
+    <section>
+        <title>Programegységek. Hívási lánc, rekurzió 6. óra</title>
+        <para>
+            Az eljárásorientált programnyelvekben a program szövege többé-kevésbé független, szuverén
+            részekre, programegységekre tagolható.
+        </para>
+        <para>
+           Egy programegység bármikor meghívhat egy másik programegységet, az egy újabb
+programegységet, és így tovább. Így kialakul egy hívási lánc. 
+        </para>
+        <para>
+            Azt a szituációt, amikor egy aktív alprogramot hívunk meg, rekurziónak nevezzük.
+        </para>
+    </section>  
+    
+    <section>
+        <title>Utasítások 5. óra</title>
+        <para>
+            A könyvben az utasítás típusairól, fajtájiról és alkalmazási módjukról olvashatunk. Értelmezzük az if-then, switch-case logikai használatát.
+            Megismerjük a ciklusokat és azoknak feltételtípusait és kezelését.
+            Ezekhez példákat látunk különböző nyelvekben.          
+        </para>
+    </section>        
+        
+    <section>
+        <title>Kifejezések 3. és 4. óra</title>
+        <para>
+                
+        </para>
+        <para>
+           Megismerjük a kfiejezések típusait, a C nyelvben a precedencia szabályait és megismerjük, majd értelmezzük az operátorok típusait, funkcióit.
+            
+            Kifejezések értelmezése:
+            
+            printf("%d\n", sizeof(char) * 8);
+            printf – azonosító
+            "%d\n"– karakterlánc
+            8 – állandó
+            sizeof, char – kulcsszó
+        </para>
+        
+    </section>        
+                
+    <section>
+        <title>Alapfogalmak 2. óra</title>
+        <para>
+            Alapfogalmak a programozásról, a gépi nyelvről.
+        </para>
+        <para>
+        – gépi nyelv
+        – assembly szintő nyelv
+        – magas szintő nyelv
+        </para>
+        <para>
+            Nyelvek típusai
+        − Eljárásorientált nyelvek
+        − Objektumorientált nyelvek 
+
+        </para>
+        <para>
+        Assembly
+        
+        Gépi nyelvre való fordítás menete.
+        </para>                
+    </section>                     
+
+    <section>
+        <title>1. óra</title>
+        <para>
+            
+        </para>
+        <para>
+            Bevezető példák, egyszerű C programok írása. Konstansok és változók használata,
+            adatbevitel, adatok megjelenítése a standard kimeneten. utasítások, cilusok, tömbök.
+        </para>
+    </section>                     
+
+   
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+</chapter>                
