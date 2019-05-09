@@ -8,7 +8,7 @@
     <section>
         <title>A Mandelbrot halmaz</title>
         <para>
-            Forrás: Repo
+            Forrás: <link xlink:href="https://gitlab.com/nbatfai/bhax/blob/master/attention_raising/Mandelbrot/3.1.2.cpp">https://gitlab.com/nbatfai/bhax/blob/master/attention_raising/Mandelbrot/3.1.2.cpp</link> 
         </para>
         <para>
          A Mandelbrot-halmaz elemei komplex számok, amiken a:
@@ -28,113 +28,93 @@ kapunk.
         </para>
         <para>
             <programlisting language="c"><![CDATA[
-#include <stdio.h>
-#include <stdlib.h>
-#include <png.h>
-#include <sys/times.h>
-#include <libpng16/png.h>
-#define SIZE 600
-#define ITERATION_LIMIT 32000
-    void mandel (int buffer[SIZE][SIZE]) {
-    clock_t delta = clock ();
-    struct tms tmsbuf1, tmsbuf2;
-    times (&tmsbuf1);
-    float a = -2.0, b = .7, c = -1.35, d = 1.35;
-    int width = SIZE, height = SIZE, iterationLimit = ITERATION_LIMIT;
-    // a számítás
-    float dx = (b - a) / width;
-    float dy = (d - c) / height;
-    float reC, imC, reZ, imZ, newReZ, newImZ;
-    int iteration = 0;
-    for (int j = 0; j < height; ++j)
-    {
-    //sor = j;
-    for (int k = 0; k < width; ++k)
-            {reC = a + k * dx;
-            imC = d - j * dy;
-            reZ = 0;
-            imZ = 0;
-            iteration = 0;
-            while (reZ * reZ + imZ * imZ < 4 && iteration < iterationLimit)
-                {
-                    newReZ = reZ * reZ - imZ * imZ + reC;
-                    newImZ = 2 * reZ * imZ + imC;
-                    reZ = newReZ;
-                    imZ = newImZ;
-                    ++iteration;
-                }
-        buffer[j][k] = iteration;
-            }
-    }
-times (&tmsbuf2);
-printf("%ld\n",tmsbuf2.tms_utime - tmsbuf1.tms_utime
-+ tmsbuf2.tms_stime - tmsbuf1.tms_stime);
-delta = clock () - delta;
-printf("%f sec\n",(float) delta / CLOCKS_PER_SEC);
-}
-int main (int argc, char *argv[])
+#include <iostream>
+#include "png++/png.hpp"
+#include <complex>
+
+int
+main ( int argc, char *argv[] )
 {
-if (argc != 2)
+
+  int szelesseg = 1920;
+  int magassag = 1080;
+  int iteraciosHatar = 255;
+  double a = -1.9;
+  double b = 0.7;
+  double c = -1.3;
+  double d = 1.3;
+
+  if ( argc == 9 )
     {
-    printf("Hasznalat: ./mandelpng fajlnev\n");
-    return -1;
+      szelesseg = atoi ( argv[2] );
+      magassag =  atoi ( argv[3] );
+      iteraciosHatar =  atoi ( argv[4] );
+      a = atof ( argv[5] );
+      b = atof ( argv[6] );
+      c = atof ( argv[7] );
+      d = atof ( argv[8] );
     }
-//Konstruktor bye,bye
-FILE *fp = fopen(argv[1], "wb");
-if(!fp) return -1;
-png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, ←-
-NULL,NULL,NULL);
-if(!png_ptr)
-return -1;
-png_infop info_ptr = png_create_info_struct(png_ptr);
-                if(!info_ptr)
+  else
     {
-    png_destroy_write_struct(&png_ptr,(png_infopp)NULL);
-    return -1;
+      std::cout << "Hasznalat: ./3.1.2 fajlnev szelesseg magassag n a b c d" << std::endl;
+      return -1;
     }
-if (setjmp(png_jmpbuf(png_ptr)))
+
+  png::image < png::rgb_pixel > kep ( szelesseg, magassag );
+
+  double dx = ( b - a ) / szelesseg;
+  double dy = ( d - c ) / magassag;
+  double reC, imC, reZ, imZ;
+  int iteracio = 0;
+
+  std::cout << "Szamitas\n";
+
+  // j megy a sorokon
+  for ( int j = 0; j < magassag; ++j )
     {
-    png_destroy_write_struct(&png_ptr, &info_ptr);
-    fclose(fp);
-    return -1;
-    }
-png_init_io(png_ptr, fp);
-png_set_IHDR(png_ptr, info_ptr, SIZE, SIZE,
-8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE,
-PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
-png_text title_text;
-title_text.compression = PNG_TEXT_COMPRESSION_NONE;
-title_text.key = "Title";
-title_text.text = "Mandelbrot halmaz";
-png_set_text(png_ptr, info_ptr, &title_text, 1);
-png_write_info(png_ptr, info_ptr);
-png_bytep row = (png_bytep) malloc(3 * SIZE * sizeof(png_byte));
-int buffer[SIZE][SIZE];
-mandel(buffer);
-for (int j = 0; j < SIZE; ++j)
-    {
-    //sor = j;
-    for (int k = 0; k < SIZE; ++k)
+      // k megy az oszlopokon
+
+      for ( int k = 0; k < szelesseg; ++k )
         {
-        row[k*3] = (255 - (255 * buffer[j][k]) / ITERATION_LIMIT);
-        row[k*3+1] = (255 - (255 * buffer[j][k]) / ITERATION_LIMIT);
-        row[k*3+2] = (255 - (255 * buffer[j][k]) / ITERATION_LIMIT);
-        row[k*3+3] = (255 - (255 * buffer[j][k]) / ITERATION_LIMIT);
+
+          // c = (reC, imC) a halo racspontjainak
+          // megfelelo komplex szam
+
+          reC = a + k * dx;
+          imC = d - j * dy;
+          std::complex<double> c ( reC, imC );
+
+          std::complex<double> z_n ( 0, 0 );
+          iteracio = 0;
+
+          while ( std::abs ( z_n ) < 4 && iteracio < iteraciosHatar )
+            {
+              z_n = z_n * z_n + c;
+
+              ++iteracio;
+            }
+
+          kep.set_pixel ( k, j,
+                          png::rgb_pixel ( iteracio%255, (iteracio*iteracio)%255, 0 ) );
         }
-    png_write_row(png_ptr, row);
+
+      int szazalek = ( double ) j / ( double ) magassag * 100.0;
+      std::cout << "\r" << szazalek << "%" << std::flush;
     }
-png_write_end(png_ptr, NULL);
-                printf("%s mentve\n",argv[1]);
+
+  kep.write ( argv[1] );
+  std::cout << "\r" << argv[1] << " mentve." << std::endl;
+
 }
 
         ]]>
             </programlisting>
         </para>
         <para>
-            A mandel egy kétdimenziós tömböt kér be amit egy 600x600-as mátrixba helyezünk bele. 
+            A mandel egy kétdimenziós tömböt kér be amit egy megadott mátrixba helyezünk bele. 
             Minden pixelre kiszámoljuk hogy része-e a Mandelbrot halmaznak, 
             addig fut a függvény amig el nem érjük az iterációs határt. 
-            Miután kiszámoltuk a kép adatait a libpng segitségével png fájlá alakitjuk.
+            Miután kiszámoltuk a kép adatait png fájlá alakitjuk.
         </para>
         <mediaobject><imageobject> <imagedata fileref="mandel.png" format="png" scale="60"/> </imageobject></mediaobject>
     </section>        
@@ -142,14 +122,11 @@ png_write_end(png_ptr, NULL);
     <section>
         <title>A Mandelbrot halmaz a <filename>std::complex</filename> osztállyal</title>
         <para>
-        A libpng nem alap könyvtár, helyette egy rá megírt wrapper könyvtárat is használhatunk.        
-        </para>
-        <para>
             <programlisting language="c"><![CDATA[
             #include <complex>
             ]]>
             </programlisting>
-            Meghivjuk a headert.
+            Meghivjuk a complex headert.
         </para>
         <para>
             A mainben deklarálnunk kell a szükséges adatokat és ott kezeljük a fájlt hasonlóan az előző feladathoz. 
@@ -172,73 +149,101 @@ png_write_end(png_ptr, NULL);
             Egy Mandelbrotos-halmazhoz hasonló halmaz, a Júlia-halmaz vizsgálata alapján eloállt algoritmus.
         </para>  
         <para>
+            A 2. for-ban számoljuk ki a rácsponthoz a komplex értéket, létrehozzuk 0 keződértékkel az <varname>iteracio</varname> változót,
+            aztán indul még egy for ciklus, ami 0-tól megy iteraciosHatar -ig.
+        </para>
+        <para>
+            Itt alkalmazzuk a rekurzív sorozatunkat, majd vizsgáljuk, hogy az eredmény valós vagy képzetes része átlépte-e az <varname>R</varname>-ben megadott értéket, ha igen,
+            akkor az iteracio -ba eltesszük az i-t, és kilépünk a ciklusból.
+        </para>
+
+        <para>
             <programlisting language="c"><![CDATA[
-int width = 1920;
-int height = 1080;
-int iterationLimit = 255;
-double a = -1.9;
-double b = 0.7;
-double c = -1.3;
-double d = 1.3;
-double reC = .285, imC = 0;
-double R = 10.0;
-if ( argc == 12 )
-    {
-    width = atoi ( argv[2] );
-    height = atoi ( argv[3] );
-    iterationLimit = atoi ( argv[4] );
-    a = atof ( argv[5] );
-    b = atof ( argv[6] );
-    c = atof ( argv[7] );
-    d = atof ( argv[8] );
-    reC = atof ( argv[9] );
-    imC = atof ( argv[10] );
-    R = atof ( argv[11] );
-    }
-else
-    {
-    std::cout << "Hasznalat: ./bio fajlnev width height n a b c d reC ←-
-    imC R" << std::endl;
-    return -1;
-    }
-png::image < png::rgb_pixel > image ( width, height );
-double dx = ( b - a ) / width;
-double dy = ( d - c ) / height;
-std::complex<double> cc ( reC, imC );
-std::cout << "Szamitas\n";
-                
-for ( int j = 0; j < height; ++j )
+#include <iostream>
+#include "png++/png.hpp"
+#include <complex>
+
+int
+main ( int argc, char *argv[] )
 {
-    // k megy az oszlopokon
-    for ( int k = 0; k < width; ++k )
+
+    int szelesseg = 1920;
+    int magassag = 1080;
+    int iteraciosHatar = 255;
+    double xmin = -1.9;
+    double xmax = 0.7;
+    double ymin = -1.3;
+    double ymax = 1.3;
+    double reC = .285, imC = 0;
+    double R = 10.0;
+
+    if ( argc == 12 )
     {
-        double reZ = a + k * dx;
-        double imZ = d - j * dy;
-        std::complex<double> z_n ( reZ, imZ );
-        int iteration = 0;
-        for (int i=0; i < iterationLimit; ++i)
-        {
-            //z_n = std::pow(z_n, 3) + cc;
-            //z_n = std::pow(z_n, 2) + std::sin(z_n) + cc;
-            //z_n=std::pow(z_n,z_n)+std::pow(z_n,6);
-            z_n=(1.0-std::pow(z_n,3)/6.0)/std::pow((z_n-std::pow(z_n ←-
-            ,2.0)/2.0),2)+cc;
-            if(std::real ( z_n ) > R || std::imag ( z_n ) > R)
-                {
-                iteration = i;
-                break;
-                }
-        }
-        image.set_pixel ( k, j,
-        png::rgb_pixel ( (iteration*20)%255, (iteration ←-
-        *40)%255, (iteration*60)%255 ));
+        szelesseg = atoi ( argv[2] );
+        magassag =  atoi ( argv[3] );
+        iteraciosHatar =  atoi ( argv[4] );
+        xmin = atof ( argv[5] );
+        xmax = atof ( argv[6] );
+        ymin = atof ( argv[7] );
+        ymax = atof ( argv[8] );
+        reC = atof ( argv[9] );
+        imC = atof ( argv[10] );
+        R = atof ( argv[11] );
+
     }
-    int percentage = ( double ) j / ( double ) height * 100.0;
-    std::cout << "\r" << percentage << "%" << std::flush;
+    else
+    {
+        std::cout << "Hasznalat: ./3.1.2 fajlnev szelesseg magassag n a b c d reC imC R" << std::endl;
+        return -1;
+    }
+
+    png::image < png::rgb_pixel > kep ( szelesseg, magassag );
+
+    double dx = ( xmax - xmin ) / szelesseg;
+    double dy = ( ymax - ymin ) / magassag;
+
+    std::complex<double> cc ( reC, imC );
+
+    std::cout << "Szamitas\n";
+
+    // j megy a sorokon
+    for ( int y = 0; y < magassag; ++y )
+    {
+        // k megy az oszlopokon
+
+        for ( int x = 0; x < szelesseg; ++x )
+        {
+
+            double reZ = xmin + x * dx;
+            double imZ = ymax - y * dy;
+            std::complex<double> z_n ( reZ, imZ );
+
+            int iteracio = 0;
+            for (int i=0; i < iteraciosHatar; ++i)
+            {
+
+                z_n = std::pow(z_n, 3) + cc;
+                //z_n = std::pow(z_n, 2) + std::sin(z_n) + cc;
+                if(std::real ( z_n ) > R || std::imag ( z_n ) > R)
+                {
+                    iteracio = i;
+                    break;
+                }
+            }
+
+            kep.set_pixel ( x, y,
+                            png::rgb_pixel ( (iteracio*20)%255, (iteracio*40)%255, (iteracio*60)%255 ));
+        }
+
+        int szazalek = ( double ) y / ( double ) magassag * 100.0;
+        std::cout << "\r" << szazalek << "%" << std::flush;
+    }
+
+    kep.write ( argv[1] );
+    std::cout << "\r" << argv[1] << " mentve." << std::endl;
+
 }
-image.write ( argv[1] );
-std::cout << "\r" << argv[1] << " mentve." << std::endl;
-      
+
 ]]>
             </programlisting>
             </para>  
@@ -249,17 +254,19 @@ std::cout << "\r" << argv[1] << " mentve." << std::endl;
 
     <section>
         <title>A Mandelbrot halmaz CUDA megvalósítása</title>
-        
+         <para>
+         Forrás: GNU Public License Ben Hiller <link xlink:href="https://github.com/benhiller/cuda-mandelbrot">https://github.com/benhiller/cuda-mandelbrot</link>
+        </para>
         <para>
             Az elező Mandelbrot feladatoknál a CPU-t használtuk fel a számitásra, mig most a videókártyánkat fogjuk.
-            A GPU rengeteg számitást végez párhuzamosan amely grafikai problémák megoldsára sokkal hatékonyabb.
+            A GPU rengeteg számitást végez párhuzamosan amely grafikai problémák megoldására sokkal hatékonyabb.
             Itt au nvidia CUDA technológiáját fogjuk felhasználni. Eheu kell a CUDA toolkit linuxunkra.
         </para>
         
         <para>
-            A lényeg hogy létrehozunk egy 600x600 szélességü rácsot és mendegyiket egy külön CUDA maggal számoljuk ki párhuzamosan.
-            A cudaMalloc függvény foglalja nekünk le a vramot GPU-nkból.
-            A forrásfájlt az nvcc-vel tudjuk lefuttatni. Ez a folyamat másodpercek alatt lefut és ugyan azt az eredményt adja.
+           Létrehozunk egy megadott szélességü rácsot és mendegyiket egy külön CUDA maggal számoljuk ki párhuzamosan.
+           A cudaMalloc függvény foglalja nekünk le a vramot GPU-nkból.
+           A forrásfájlt az nvcc-vel tudjuk lefuttatni. Ez a folyamat másodpercek alatt lefut és ugyan azt az eredményt adja.
             
         </para>
         <para>
@@ -390,40 +397,128 @@ std::cout << (float) delta / CLOCKS_PER_SEC << " sec" << std::endl;
         <title>Mandelbrot nagyító és utazó C++ nyelven</title>
         <para>
             Építs GUI-t a Mandelbrot algoritmusra, lehessen egérrel nagyítani egy területet, illetve egy pontot
-            egérrel kiválasztva vizualizálja onnan a komplex iteréció bejárta znkomplex számokat!
-        </para>
-         <para>
-            sudo apt-get install libqt4-dev
-            A program a QT GUI-t használja, ennek segítségével tudjuk elkészíteni a 
-            Mandelbrot halmazt beutazó programunkat.
-        </para>   
-        <para>
-            Az szükséges 4 fájlnak egy mappában kell lennie. 
-            A mappában futtatni kell a qmake -projec parancsot. 
-            Ez létre fog hozni egy .pro fájlt. 
-            Ebbe írjuk: QT += widgets sort. 
-            Ezután futtatjuk:
-            qmake *.pro.
+            egérrel kiválasztva vizualizálja onnan a komplex iteréció bejárta komplex számokat!
         </para>
         <para>
-            Létrejön a Makefile, ezt használnijuk. 
-            Ki adjuk a make parancsot ami létrehoz egy bináris fájlt amit futtathatunk.
-        </para>
-    </section>                     
-                                                                                                                                                                            
-    <section>
-        <title>Mandelbrot nagyító és utazó Java nyelven</title>
+        Forrás: GNU Public License Sully Chen <link xlink:href="https://github.com/SullyChen/Mandelbrot-Set-Plotter/blob/master/MandelbrotSetPlotter.cpp">https://github.com/SullyChen/Mandelbrot-Set-Plotter/blob/master/MandelbrotSetPlotter.cpp</link>
+        </para> 
         <para>
-            Az előző feladatban készített nagyító Java implementációját kell most elkészíteni. 
-            Új ablakban nyílik meg a nagyítás, melynek mérete a kijelölt terület függvényében változik. 
-            Ezt a következő sorral érjük el:
-            <programlisting language="java">
-                public class MandelbrotHalmazNagyító extends MandelbrotHalmaz
-            </programlisting>
-            A Javaban nincs  <function>#include</function>, helyette az <function>import</function>-ot
-            vagy a <function>extends</function>-et használjuk.
+            A program beolvassa a fájlt és képes azt az ablakban kezelni. Ay egér kattintására annak pozicióját lekéri és mozgatja az ablakot. 
+        </para> 
+        <para>
+            
+            <programlisting language="c"><![CDATA[
+                #include "SFML/Graphics.hpp"
 
+//resolution of the window
+const int width = 1280;
+const int height = 720;
+
+//used for complex numbers
+struct complex_number
+{
+    long double real;
+    long double imaginary;
+};
+
+void generate_mandelbrot_set(sf::VertexArray& vertexarray, int pixel_shift_x, int pixel_shift_y, int precision, float zoom)
+{
+#pragma omp parallel for
+    for(int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            //scale the pixel location to the complex plane for calculations
+            long double x = ((long double)j - pixel_shift_x) / zoom;
+            long double y = ((long double)i - pixel_shift_y) / zoom;
+            complex_number c;
+            c.real = x;
+            c.imaginary = y;
+            complex_number z = c;
+            int iterations = 0; //keep track of the number of iterations
+            for (int k = 0; k < precision; k++)
+            {
+                complex_number z2;
+                z2.real = z.real * z.real - z.imaginary * z.imaginary;
+                z2.imaginary = 2 * z.real * z.imaginary;
+                z2.real += c.real;
+                z2.imaginary += c.imaginary;
+                z = z2;
+                iterations++;
+                if (z.real * z.real + z.imaginary * z.imaginary > 4)
+                    break;
+            }
+            //color pixel based on the number of iterations
+            if (iterations < precision / 4.0f)
+            {
+                vertexarray[i*width + j].position = sf::Vector2f(j, i);
+                sf::Color color(iterations * 255.0f / (precision / 4.0f), 0, 0);
+                vertexarray[i*width + j].color = color;
+            }
+            else if (iterations < precision / 2.0f)
+            {
+                vertexarray[i*width + j].position = sf::Vector2f(j, i);
+                sf::Color color(0, iterations * 255.0f / (precision / 2.0f), 0);
+                vertexarray[i*width + j].color = color;
+            }
+            else if (iterations < precision)
+            {
+                vertexarray[i*width + j].position = sf::Vector2f(j, i);
+                sf::Color color(0, 0, iterations * 255.0f / precision);
+                vertexarray[i*width + j].color = color;
+            }
+        }
+    }
+}
+
+int main()
+{
+    sf::String title_string = "Mandelbrot Set Plotter";
+    sf::RenderWindow window(sf::VideoMode(width, height), title_string);
+    window.setFramerateLimit(30);
+    sf::VertexArray pointmap(sf::Points, width * height);
+    
+    float zoom = 300.0f;
+    int precision = 100;
+    int x_shift = width / 2;
+    int y_shift = height / 2;
+    
+    generate_mandelbrot_set(pointmap, x_shift, y_shift, precision, zoom);
+    
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        
+        //zoom into area that is left clicked
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        {
+            sf::Vector2i position = sf::Mouse::getPosition(window);
+            x_shift -= position.x - x_shift;
+            y_shift -= position.y - y_shift;
+            zoom *= 2;
+            precision += 200;
+#pragma omp parallel for
+            for (int i = 0; i < width*height; i++)
+            {
+                pointmap[i].color = sf::Color::Black;
+            }
+            generate_mandelbrot_set(pointmap, x_shift, y_shift, precision, zoom);
+        }
+        window.clear();
+        window.draw(pointmap);
+        window.display();
+    }
+    
+    return 0;
+}
+]]>
+            </programlisting>  
         </para>
-    </section>
+    </section>        
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 </chapter>                

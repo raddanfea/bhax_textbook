@@ -26,4 +26,86 @@
             repójába.
         </revremark>
     </revision>
+    <revision>
+        <revnumber>0.0.4</revnumber>
+        <date>2019-05-09</date>
+        <authorinitials>nbatfai</authorinitials>
+        <revremark>
+            Turing feladat befejezése
+            GNU Public License Norbert Bátfai
+            GNU Public License Dániel Rádi
+        </revremark>
+    </revision>
+    <revision>
+        <revnumber>0.0.5</revnumber>
+        <date>2019-05-09</date>
+        <authorinitials>raddan</authorinitials>
+        <revremark>
+            Chomsky feladat befejezése
+            GNU Public License Norbert Bátfai
+            GNU Public License Dániel Rádi
+        </revremark>
+    </revision>
+    <revision>
+        <revnumber>0.0.6</revnumber>
+        <date>2019-05-09</date>
+        <authorinitials>raddan</authorinitials>
+        <revremark>
+            Turing feladat befejezése
+            GNU Public License Norbert Bátfai
+            GNU Public License Dániel Rádi
+        </revremark>
+    </revision>
+    <revision>
+        <revnumber>0.0.7</revnumber>
+        <date>2019-05-09</date>
+        <authorinitials>raddan</authorinitials>
+        <revremark>
+            Mandelbrot feladat befejezése       
+            GNU Public License Norbert Bátfai, Dániel Rádi,
+             <link xlink:href="https://github.com/benhiller/cuda-mandelbrot">Ben Hiller</link>,
+             <link xlink:href="https://github.com/SullyChen/Mandelbrot-Set-Plotter/blob/master/MandelbrotSetPlotter.cpp">Sully Chen</link>
+        </revremark>
+    </revision>
+    <revision>
+        <revnumber>0.0.4</revnumber>
+        <date>2019-05-09</date>
+        <authorinitials>raddan</authorinitials>
+        <revremark>
+            Turing feladat befejezése
+            GNU Public License Norbert Bátfai
+            GNU Public License Dániel Rádi
+        </revremark>
+    </revision>
+    <revision>
+        <revnumber>0.0.4</revnumber>
+        <date>2019-05-09</date>
+        <authorinitials>raddan</authorinitials>
+        <revremark>
+            Turing feladat befejezése
+            GNU Public License Norbert Bátfai
+            GNU Public License Dániel Rádi
+        </revremark>
+    </revision>
+    <revision>
+        <revnumber>0.0.4</revnumber>
+        <date>2019-05-09</date>
+        <authorinitials>raddan</authorinitials>
+        <revremark>
+            Turing feladat befejezése
+            GNU Public License Norbert Bátfai
+            GNU Public License Dániel Rádi
+        </revremark>
+    </revision>
+    
+    <revision>
+        <revnumber>0.0.9</revnumber>
+        <date>2019-05-09</date>
+        <authorinitials>raddan</authorinitials>
+        <revremark>
+            Feladatlisták folytatása.
+            <link xlink:href="https://github.com/raddanfea/bhax_textbook">https://github.com/raddanfea/bhax_textbook</link>
+            repójába.
+        </revremark>
+    </revision>
 </revhistory>

@@ -15,10 +15,10 @@
             Megoldás videó: <link xlink:href="https://bhaxor.blog.hu/2018/10/10/myrmecologist">https://bhaxor.blog.hu/2018/10/10/myrmecologist</link>
         </para>
         <para>
-            Megoldás forrása:  <link xlink:href="https://gitlab.com/fupn26/bhax/tree/master/attention_raising/Myrmecologist">https://gitlab.com/fupn26/bhax/tree/master/attention_raising/Myrmecologist</link>                
+            Megoldás forrása:  <link xlink:href="https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/Myrmecologist">https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/Myrmecologist</link>                
         </para>
         <para>
-            A forrásban megadott kód 7 fájlból áll. egy .pro összefoglaló fájl ami megmutatja nekünk hogy 3 forrásunk és 3 header fájlunk van.
+            A forrásban megadott több fájlból áll. egy .pro összefoglaló fájl ami megmutatja nekünk hogy 3 forrásunk és 3 header fájlunk van.
         </para>
         <para>
             <filename>ant.h:</filename>
@@ -183,7 +183,7 @@ typedef std::vector<Ant> Ants;
 
                     
                     A felhasználói interaktivitás kezelésére létre kell hoznunk egy KeyListenert, 
-                        amely  abillentyűzetről kapott leütéseket figyeli és kezeli le és kezeli a funkciókat.
+                    amely  abillentyűzetről kapott leütéseket figyeli és kezeli le és kezeli a funkciókat.
                     
 
             <programlisting><![CDATA[

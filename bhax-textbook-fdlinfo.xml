@@ -69,7 +69,32 @@
         <para>
             <link xlink:href="http://gnu.hu/fdl.html">http://gnu.hu/fdl.html</link>                
         </para>
-    </legalnotice>   
+    </legalnotice>
+    <legalnotice>           
+        <para>                
+            Copyright (C) 2019, Rádi Dániel, radidani55@gmail.com,
+        </para>
+        <para>
+            Permission is granted to copy, distribute and/or modify this document
+            under the terms of the GNU Free Documentation License, Version 1.3
+            or any later version published by the Free Software Foundation;
+            with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+            A copy of the license is included in the section entitled "GNU
+            Free Documentation License".                
+        </para>
+        <para>
+            <link xlink:href="https://www.gnu.org/licenses/fdl.html">https://www.gnu.org/licenses/fdl.html</link>                
+        </para>
+            
+        <para>
+            Engedélyt adunk Önnek a jelen dokumentum sokszorosítására, terjesztésére és/vagy módosítására 
+            a Free Software Foundation által kiadott GNU FDL 1.3-as, vagy bármely azt követő verziójának 
+            feltételei alapján. Nincs Nem Változtatható szakasz, nincs Címlapszöveg, nincs Hátlapszöveg.                
+        </para>
+        <para>
+            <link xlink:href="http://gnu.hu/fdl.html">http://gnu.hu/fdl.html</link>                
+        </para>
+    </legalnotice>      
     
     <xi:include href="bhax-textbook-revhistory.xml">
         <xi:fallback>

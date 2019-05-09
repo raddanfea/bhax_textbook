@@ -10,38 +10,51 @@
         <para>
            
         </para>
-        <para>
-            Megoldás videó:
-        </para>
+        
         <para>
             A háromszög mátrix 2 tulajdonsággal rendelkezik,
             négyzetes, tehát sorai és oszlopai száma megegyezik,
             illetve, a főátlója alatt(vagy felett) csak nulla szerepel.
                 
         </para>
-        <mediaobject><imageobject> <imagedata fileref="harmoszogm.png" format="png" scale="70"/> </imageobject></mediaobject>
+        <para>
+            Forrás: <link xlink:href="https://gitlab.com/nbatfai/bhax/blob/master/thematic_tutorials/bhax_textbook_IgyNeveldaProgramozod/Caesar/tm.c?fbclid=IwAR2i44HXE-I_J9_hCFSvjKmMU4fySlLY7cJr6-kHcao35wgQtOcgevp9sp0">Bátfai Norbert Repo</link>
+            Kép forrása: Norber Bátfai
+        </para>
+        <mediaobject><imageobject> <imagedata fileref="harmoszogm.png" format="png" scale="40"/> </imageobject></mediaobject>
        
         <para>
             Létrehozunk egy egész számot és lefoglaljuk a **tm területét egy mutatóra mutató doubleként.
             A <function>malloc</function> függvény lefglalja a dinamikus területen a paramétereként kapott méretű területet.
+            Ey 8 bitet  fog lefoglalni. A kövezekző sor ki fogja írni  a tm cimét. 
+            A Maloc fügvény azt jelenti, hogy az operációs renszertől kér nemóriát ami jelenleg 8*5 azaz 40 bit. 
+            A következő sorban kí iratjuk a tm vátozó értékét.
+            Létrehozunk egy for ciklust ami belselyében tm[i] lefoglalja a megfelelő helyet.
+            Egy for ciklust ban lélvő for ciklussal tele rakjuk a mátrixunkat értékekel. 
+            Értéket rendelünk tm-hez. Itt: 42, 43, 44, 55
+            A free (tm) parancsal pedig felszabaitjuk a pointereket.
+
         </para>
         <para>
             <programlisting language="c"><![CDATA[
+#include <stdio.h>
+#include <stdlib.h>
+
+int
+main ()
+{
     int nr = 5;
     double **tm;
-        ]]>
-            </programlisting>
-        </para>
-        <para>
-            Null értékeket keresünk and fn tartalmában ellenőrzésképp.
-        </para>
-        <para>
-            <programlisting language="c"><![CDATA[
-if ((tm = (double **) malloc (nr * sizeof (double *))) == NULL)
+    
+    printf("%p\n", &tm);
+    
+    if ((tm = (double **) malloc (nr * sizeof (double *))) == NULL)
     {
         return -1;
     }
 
+    printf("%p\n", tm);
+    
     for (int i = 0; i < nr; ++i)
     {
         if ((tm[i] = (double *) malloc ((i + 1) * sizeof (double))) == NULL)
@@ -50,18 +63,41 @@ if ((tm = (double **) malloc (nr * sizeof (double *))) == NULL)
         }
 
     }
-        ]]>
-            </programlisting>
-        </para>
-        <para>
-            
-        </para>
-        <para>
-            <programlisting language="c"><![CDATA[
 
-        ]]>
+    printf("%p\n", tm[0]);    
+    
+    for (int i = 0; i < nr; ++i)
+        for (int j = 0; j < i + 1; ++j)
+            tm[i][j] = i * (i + 1) / 2 + j;
+
+    for (int i = 0; i < nr; ++i)
+    {
+        for (int j = 0; j < i + 1; ++j)
+            printf ("%f, ", tm[i][j]);
+        printf ("\n");
+    }
+
+    tm[3][0] = 42.0;
+    (*(tm + 3))[1] = 43.0;	// mi van, ha itt hiányzik a külső ()
+    *(tm[3] + 2) = 44.0;
+    *(*(tm + 3) + 3) = 45.0;
+
+    for (int i = 0; i < nr; ++i)
+    {
+        for (int j = 0; j < i + 1; ++j)
+            printf ("%f, ", tm[i][j]);
+        printf ("\n");
+    }
+    for (int i = 0; i < nr; ++i)
+        free (tm[i]);
+
+    free (tm);
+
+    return 0;
+}
+]]>
             </programlisting>
-        </para>        
+        </para>      
     </section>        
     <section>
         <title>C EXOR titkosító</title>
@@ -69,10 +105,7 @@ if ((tm = (double **) malloc (nr * sizeof (double *))) == NULL)
             Írj egy EXOR titkosítót C-ben!
         </para>
         <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:   
+            Megoldás kódja itt.  
             <programlisting language="c"><![CDATA[
 ﻿#include <stdio.h>
 #include <unistd.h>
@@ -144,10 +177,7 @@ main (int argc, char **argv)
             Írj egy EXOR titkosítót Java-ban!
         </para>
         <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:                
+            Megoldás kódja itt:
         </para>
         <para>
             <programlisting language="c"><![CDATA[
@@ -200,16 +230,13 @@ main (int argc, char **argv)
         </para>
         <para>
             Az előző feldat java nyelven megírva.
-            Bemeneti fájl helyett a Ctrl+D billentyűkombináció lenyomásáig várja az inputot a terminál.
-            
+            Bemeneti fájl helyett billentyűkombináció lenyomásáig várja az inputot a terminál.
         </para>            
     </section>        
     <section>
         <title>C EXOR törő</title>
         <para>
             Írj egy olyan C programot, amely megtöri az első feladatban előállított titkos szövegeket!
-            
-            
         </para>
         <para>
             A töréshez szükségünk lesz egy módszerre hogy eldöntsük mi is lehet a jó megoldás. Itt a szavak átlagos hosszát és a leggyakoribb magyar szavakat ellenőrizzük.
