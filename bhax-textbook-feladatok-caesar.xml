@@ -443,37 +443,20 @@ compute(nn.exor, exor.data[,1:2])
         <para>
             Megoldás forrása: <link xlink:href="https://gitlab.com/whoisZORZ/bhax/tree/master/attention_raising/Caesar/Perceptron">https://gitlab.com/whoisZORZ/bhax/tree/master/attention_raising/Caesar/Perceptron</link>                
         </para>
+        
         <para>
-        A Benoît Mandelbrot nevéhez köthető Mandelbrot-halmaz a komplex számsíkon ábrázolva egy fraktálalakzatot jelent. 
-        A kétdimenziós halmaz png képábráját fogjuk létrehozni a <filename>mandel.cpp</filename> file segítségével.
+        Perceptron a neurális hálózat hibakezelőjének része.
+            A latin perceptioból syóból ered, észlelést jelent. A perceptron az észlelésre használt eszközök. 
+            Gépi tanulás a alakalmazási területe melynek célja hogy magától tanuljon ilyen gyakorlati hálókat a program.
+            Perceprton egy  algoritmus mely  bináris osztályokat  tanít a számítógépnek.
         </para> 
-                <para>
-                    Szükségünk van a 'libpng-dev' és 'libpng++-dev' -ra és a hivatalos png++ headerre.
-            <programlisting language="c"><![CDATA[
-#include <iostream>
-#include "mlp.hpp"
-#include <png++/png.hpp>
-
-int main (int argc, char **argv)
-{
-	png::image <png::rgb_pixel> png_image (argv[1]);
-	int size = png_image.get_width() *png_image.get_height();
-	Perceptron* p = new Perceptron (3, size, 256, 1);
-	double* image = new double[size];
-	for (int i {0}; i<png_image.get_width(); ++i)
-		for (int j {0}; j<png_image.get_height(); ++j)
-			image[i*png_image.get_width() +j] = png_image[i][j].red;
-	double value = (*p) (image);
-	std::cout << value << std::endl;
-	delete p;
-	delete [] image;
-}
-
-$ g++ mlp.hpp main.cpp -o perc -lpng -std=c++11
-$ ./perc mandel.png
-0.731059
-        ]]>
-            </programlisting>
+        <para>
+            A feladatban neuron hálókról, azon belül perceptronokról beszélünk. 
+            Ez egy algoritmus amely a számítógépnek megtanítja a bináris osztályozást. 
+            A neuron egy bizonyos pontot elérve , ad egy kimenetet. 
+            A perceptronnak adhatunk példákat és képes lesz megmondani a többi elemről,
+            hogy milzen tulajdonságú. Bináris osztáylozásnak nevezzük, mert bináris adatot adunk neki.
+            
         </para>
         <mediaobject><imageobject> <imagedata fileref="mandel.png" format="png" scale="60"/> </imageobject></mediaobject>            
     </section>        
