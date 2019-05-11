@@ -58,7 +58,7 @@
     </revision>
     <revision>
         <revnumber>0.0.7</revnumber>
-        <date>2019-05-09</date>
+        <date>2019-05-11</date>
         <authorinitials>raddan</authorinitials>
         <revremark>
             Mandelbrot feladat befejezése       
@@ -68,44 +68,45 @@
         </revremark>
     </revision>
     <revision>
-        <revnumber>0.0.4</revnumber>
+        <revnumber>0.0.8</revnumber>
         <date>2019-05-09</date>
         <authorinitials>raddan</authorinitials>
         <revremark>
-            Turing feladat befejezése
+            Welch feladat befejezése
             GNU Public License Norbert Bátfai
             GNU Public License Dániel Rádi
         </revremark>
     </revision>
     <revision>
-        <revnumber>0.0.4</revnumber>
-        <date>2019-05-09</date>
+        <revnumber>0.0.9</revnumber>
+        <date>2019-05-10</date>
         <authorinitials>raddan</authorinitials>
         <revremark>
-            Turing feladat befejezése
+            Conway feladat befejezése
             GNU Public License Norbert Bátfai
             GNU Public License Dániel Rádi
         </revremark>
     </revision>
     <revision>
-        <revnumber>0.0.4</revnumber>
-        <date>2019-05-09</date>
+        <revnumber>0.0.10</revnumber>
+        <date>2019-05-10</date>
         <authorinitials>raddan</authorinitials>
         <revremark>
-            Turing feladat befejezése
-            GNU Public License Norbert Bátfai
-            GNU Public License Dániel Rádi
+            Swarzenegger feladat befejezése.
+            GNU Public License: Norbert Bátfai, Dániel Rádi
+            Referencia:
+            <link xlink:href="http://biointelligence.hu/pdf/tf_bkp.pdf">"Dr. Búzáné, Dr. Kis Piroska"</link>
         </revremark>
     </revision>
     
     <revision>
-        <revnumber>0.0.9</revnumber>
-        <date>2019-05-09</date>
+        <revnumber>0.0.11</revnumber>
+        <date>2019-05-10</date>
         <authorinitials>raddan</authorinitials>
         <revremark>
-            Feladatlisták folytatása.
-            <link xlink:href="https://github.com/raddanfea/bhax_textbook">https://github.com/raddanfea/bhax_textbook</link>
-            repójába.
+            Chaitin feladat befejezése.
+            GNU Public License Norbert Bátfai
+            GNU Public License Dániel Rádi
         </revremark>
     </revision>
 </revhistory>

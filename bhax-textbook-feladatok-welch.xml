@@ -197,6 +197,11 @@ int main()
             elemeket, és végül kiírjuk az új fát.
             Az eredeti binFát már nem tudnánk kinyomni, mert azt nulláztuk.
         </para>
+        
+    </section>
+    <section>
+        <title>LZW feladatkör kimeneti kép</title>
+        <mediaobject><imageobject> <imagedata fileref="lzw.png" format="png" scale="70"/> </imageobject></mediaobject>
     </section>                     
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 </chapter>                

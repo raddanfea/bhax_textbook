@@ -15,11 +15,14 @@
             <programlisting language="c"><![CDATA[
         
             (define (fact n)
-            (do ((i 1 (+ 1 i)) // Növeljük 1-el
-            (number 1 (* i number))) // Deklaráljuk 1-et és szorozzuk i-vel
-            ((> i n) number // loop definiálása
+            (do ((i 1 (+ 1 i)) 
+            (number 1 (* i number))) 
+            ((> i n) number 
         ]]>
             </programlisting> 
+        </para>
+        <para>
+            Deklaráljuk 'i'-t 1 értékkel. Deklaráljuk 'number'-t 1 értékkel majd szorozzuk 'i'-vel. Ezt egy loopba helyezzük és fordulásonként növeljük 'i'-t 1-el. 
         </para>
         <para>
             Rekurzív:

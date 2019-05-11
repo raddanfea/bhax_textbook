@@ -8,7 +8,7 @@
     <section>
         <title>Szoftmax Py MNIST</title>
         <para>
-            A megoldáshoz referenciát tartalmaz: Dr. Búzáné és Dr. Kis Piroska <link xlink:href="http://biointelligence.hu/pdf/tf_bkp.pdf">"Ismerkedés a TensorFlow rendszerrel"</link> című írására.
+            Forrás: <link xlink:href="http://biointelligence.hu/pdf/tf_bkp.pdf">"Dr. Búzáné, Dr. Kis Piroska"</link>
         </para>
         <para>
             A TensorFlow egy szoftverkönyvtár gépi tanulási algoritmusok leírására és végrehajtására.
@@ -16,7 +16,7 @@
             elleni támadások felderítésében és az agykutatásban.
         </para>
         <para>
-            A TensorFlow-t a Python programozási nyelv pip package managerével telepítem.
+            A TensorFlow-t a Python programozási nyelv pip package managerével telepítjük.
             Első lépésként a Python fejlesztői környezete:
             <programlisting><![CDATA[
             $ sudo apt update
@@ -28,10 +28,10 @@
             <programlisting><![CDATA[
             $ virtualenv --system-site-packages -p python3
             $ source ./venv/bin/activate
-            (venv) $ pip install --upgrade pip
-            (venv) $ pip install --upgrade tensorflow
-            (venv) $ python -c "import tensorflow as tf; tf.enable_eager_execution(); print(tf.reduce_sum(tf.random_normal([1000, 1000])))"
-            (venv) $ deactivate]]>
+            $ pip install --upgrade pip
+            $ pip install --upgrade tensorflow
+            $ python -c "import tensorflow as tf; tf.enable_eager_execution(); print(tf.reduce_sum(tf.random_normal([1000, 1000])))"
+            $ deactivate]]>
             </programlisting>
         </para>
         <para>
@@ -129,7 +129,7 @@ if __name__ == '__main__':
   FLAGS = parser.parse_args()
   tf.app.run()]]>
  </programlisting>
- <para>Valahogy így fog kinézni a program helyes futtatása:
+ <para>Igy fog kinézni a program helyes futtatása:
  <programlisting><![CDATA[
 $ python mnist_softmax_UDPROG61.py 
 Extracting /tmp/tensorflow/mnist/input_data/train-images-idx3-ubyte.gz
@@ -184,25 +184,19 @@ Extracting /tmp/tensorflow/mnist/input_data/t10k-labels-idx1-ubyte.gz
     <section>
         <title>Mély MNIST</title>
         <para>
-            Python            
-        </para>
-        <para>
-            Megoldás forrása:                
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Ezt a feladatot eldobtam.
         </para>
     </section>        
 
     <section>
         <title>Minecraft MALMÖ</title>
         <para>
-            A Project Malmo egy olyan platform, amely segítségével kutatásokat végezhetünk a mesterséges intelligencia világában, 
-            méghozzá a népszerű játék, a Minecraft használatával.
-            Olyan Python ágenst készítünk, amely egy alapértelmezett biomban gazdag világban az akadályokat legyőzve, jobbra-balra tartva felfedezi a világot.
+            Forrás: <link xlink:href="https://github.com/Microsoft/malmo">"Microsoft Project Malmo"</link>
         </para>
         <para>
-            Mivel már az előző feladatokabn telepitettük a python ezzel is dolgozhatunk, de ajánlot a pre-built verzió használata. Tetszés szerint futtatjuk a programot.
+            A Project Malmo egy olyan platform, amely segítségével kutatásokat végezhetünk a mesterséges intelligencia világában, 
+            méghozzá a népszerű játék, a Minecraft használatával.
+            Python ágenst készítünk, amely egy alapértelmezett biomban gazdag világban az akadályokat legyőzve, jobbra-balra tartva felfedezi a világot.
         </para>
         <para>
             A my_mission = MalmoPython.MissionSpec() parancs létrehoz egy XML stringet, amelyet a Minecraft képes értelmezni, így el is tud indulni a küldetésünk.
@@ -244,7 +238,7 @@ Extracting /tmp/tensorflow/mnist/input_data/t10k-labels-idx1-ubyte.gz
     </para>
     <para>
         Miközben Steve mozog, blokkok veszik körül, tehát akadályokkal kell szembenéznie.
-        Hogy ezt elkerüljük, a json függvény segítségével információt szerzünk az őt körülvevő blokkokról, ezeknek típusát ki is tudjuk iratni a terminálra (pl. air, grass, tallgrass).
+        Hogy ezt elkerüljük, a json függvény segítségével információt szerzünk az őt körülvevő blokkokról, ezeknek típusát ki is tudjuk iratni a terminálra.
         3x3-as, blokkokból álló griddel dolgozunk.
        
         
@@ -315,7 +309,7 @@ if world state.number of observations since last state > 0:
     </para>
     <para>
     Ha Steve számára épp nem szabad az út akkor reagáljon és megnöveljük az akadályokat számláló változó értékét eggyel.
-    Ha szabad az út, nem kell fordulnia, ugrania és támadnia sem, csupán előre haladnia teljes sebességgel.
+    Ha szabad az út, nem kell reagálnia, csak előre haladnia teljes sebességgel.
     Az akadályokat ugrálással is kikerülheti, így tud kiugrani a vízből vagy a lyukakból.
     <programlisting language="Python"><![CDATA[
     if nbr[elotteidx+9]!="air" or nbr[elotteidxj+9]!="air" or nbr[elotteidxb+9]!="air":

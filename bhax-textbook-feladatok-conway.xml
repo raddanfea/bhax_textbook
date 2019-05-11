@@ -26,23 +26,19 @@
 
 <programlisting language="c"><![CDATA[
         
-            #ifndef ANT_H
+#ifndef ANT_H
 #define ANT_H
 
 class Ant
 {
-
 public:
     int x;
     int y;
     int dir;
 
     Ant(int x, int y): x(x), y(y) {
-        
         dir = qrand() % 8;
-        
     }
-
 };
 
 typedef std::vector<Ant> Ants;
@@ -50,21 +46,15 @@ typedef std::vector<Ant> Ants;
 #endif
 
         ]]>
-            </programlisting> 
+        </programlisting> 
         <para>
-            Definiáljuk a hangyát mint objektum és adunk neki poziciót és irányt véletlenszerüen.
-        </para> 
-        <para>
-            typedef-el megadjuk hogy az objektum vektora az "ants" legyen.
+            Definiáljuk a hangyát mint objektum és adunk neki poziciót és irányt véletlenszerüen. typedef-el megadjuk hogy az objektum vektora az "ants" legyen.
         </para>
         <para>                    
             <filename>antthread.h</filename>
         </para>
-
         <para>
-            Az ant.h és qtread felhasználásával létrehozzuk anz Anttread osztályt és Q_OBJECT makrózzuk.
-        </para> 
-        <para>
+            Az ant.h és qtread felhasználásával létrehozzuk anz Anttread osztályt.
             Egy osztály egy threadnek felel meg.
         </para> 
         <para>
@@ -78,13 +68,11 @@ typedef std::vector<Ant> Ants;
         </para>
                 
                 <para>
-                    Megadjuk az AntWin osztályt, ami a QMainWindow gyermeke. Itt a Q_OBJECT makróra slot megadása miatt lesz szükség.
-                </para>
-                <para>
+                    Megadjuk az AntWin osztályt, ami a QMainWindow gyermeke.
                     Deklaráljuk a konstruktort, destruktort, és a <function> paintEvent</function> függvényt.
                 </para>
                 <para>
-                    Megadjuk a <function>closeEvent</function> és <function>keyPressEvent</function> függvényeket.
+                    Meghatrozzuk a <function>closeEvent</function> és <function>keyPressEvent</function> függvényeket.
                     Az ablak bezárásakor leállítja a szálat, a Q(kilépés) és P(szünet) valamint az Esc(kilépés) gombok lenyomását kezelik.
                 </para>
     <para>
@@ -98,56 +86,38 @@ typedef std::vector<Ant> Ants;
         </para>
         <para>
             sumNbhs()
-        </para>
-        <para>
             Megszámolja a cella szomszédait.
         </para>
         <para>
             newDir()
-        </para>
-        <para>
             Ha új irányt kell adni egy hangyának akkor azt ez a függvény kezeli.
         </para>
         <para>
             detDirs()
-        </para>
-        <para>
             A hangya iránya alapján megadja, hogy merre megy.
         </para>
         <para>
             moveAnts()
-        </para>
-        <para>
             Ez a függvény mozgat egy adott hangyát.
         </para>
         <para>
             timeDevel()
-        </para>
-        <para>
             Az összes hangyát mozgatja.
         </para>
         <para>
             setPheromone()
-        </para>
-        <para>
             Beállítja a feromonokat az adott cellán. <function>timeDevel()</function> használja.
         </para>
         <para>
             run()
-        </para>
-        <para>
             A foylamatos loop itt valósul meg. Itt lesz a szünet és a megállás is kezelve.
         </para>
         <para>
             Destruktor:
-        </para>
-        <para>
             Elpusztítja a hangyákat és a tömböt amiben tároltuk őket.
         </para>
         <para>
             <filename>antwin.cpp</filename>   függvényei:
-        </para>
-        <para>
             Kezeli az ablakot és a rajzoló threadet.
         </para>
 
@@ -182,8 +152,8 @@ typedef std::vector<Ant> Ants;
             });]]></programlisting> 
 
                     
-                    A felhasználói interaktivitás kezelésére létre kell hoznunk egy KeyListenert, 
-                    amely  abillentyűzetről kapott leütéseket figyeli és kezeli le és kezeli a funkciókat.
+                    Létre kell hoznunk egy KeyListenert, 
+                    amely a billentyűzetről kapott leütéseket figyeli és kezeli le és kezeli a funkciókat.
                     
 
             <programlisting><![CDATA[
