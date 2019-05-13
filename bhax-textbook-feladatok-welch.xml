@@ -196,8 +196,22 @@ int main()
             Ezután az <function>std::move</function> függvénnyel átmozgatjuk az egyes
             elemeket, és végül kiírjuk az új fát.
             Az eredeti binFát már nem tudnánk kinyomni, mert azt nulláztuk.
+        </para>  
+        <para>
+            Figyeljünk arra hogy egy teljesen új fát kell felépitenünk, 
+            minden új elemnek új helyet kell foglalva. 
+            Ezekre kell az információt átmozgatnunk különben adataink elvesznek az eredeti fa nullázásakor.
+            <programlisting><![CDATA[
+                
+            
+            LZWBinFa & operator= ( LZWBinFa && regi )
+            {
+                std::cout << "LZWBinFa move assign" << std::endl;
+                std::swap ( gyoker, regi.gyoker );
+                std::swap ( fa, regi.fa );
+                return *this;
+            }]]></programlisting>
         </para>
-        
     </section>
     <section>
         <title>LZW feladatkör kimeneti kép</title>
