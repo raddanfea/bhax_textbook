@@ -9,7 +9,6 @@
         <title>Szoftmax Py MNIST</title>
         <para>
             Forrás: <link xlink:href="http://biointelligence.hu/pdf/tf_bkp.pdf">"Dr. Búzáné, Dr. Kis Piroska"</link>
-		Mentorálás:Takács Viktor
         </para>
         <para>
             A TensorFlow egy szoftverkönyvtár gépi tanulási algoritmusok leírására és végrehajtására.

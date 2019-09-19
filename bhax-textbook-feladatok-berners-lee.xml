@@ -1,0 +1,77 @@
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <info>
+        <title>Helló, Berners-Lee!</title>
+        <keywordset>
+            <keyword/>
+        </keywordset>
+    </info>
+    
+    
+    <section>
+        <title>Feledatok 0. hét</title>
+        <para> 
+Források:
+        </para>
+        <para> 
+-C++: Benedek Zoltán, Levendovszky Tihamér Szoftverfejlesztés C++ nyelven.
+        </para>
+	<para>
+          -Java: Nyékyné Dr. Gaizler Judit et al. Java 2 útikalauz programozóknak 5.0 I-II.
+        </para>
+	<para>
+        -Python: Forstner Bertalan, Ekler Péter, Kelényi Imre: Bevezetés a mobilprogramozásba.
+Gyors prototípus-fejlesztés Python és Java nyelven (35-51 oldal)  
+        </para>
+    </section>
+	<section>
+		<title>C++ vs Java</title>
+		<para>
+		A C++ és a Java objektumorientált nyelvek, ahol a programok osztályokból létrehozott objektumokból állnak.
+A két legfőbb különbség a két nyelv között az, hogy míg a C++ gépikódot állít elő ami a tényleges architektúrán fut, addig a Java kód fordítása Javabytekódot készít ami futtatáskor a Java Virtuális Gép fog végrehajtani interpreterként. 
+		</para>
+		<para>
+
+Ez lehetové teszi hogy bármely Java támogatott architektúrán fusson. Ezeknek köszönhetően a Java cross-platform nyelv. C++ esetén az elő állított binárisokat nem nagyon tudjuk más arhitektúrákon futtatni. A horozhatósága miatt a nyelv sokkal szigorúbb nyelvi elemeivel, például belső szerkezetükkel kapcsolatban.
+
+A Javának két főbb ága van, a JRE (Java Runtime Enviroment) és a JDK (Java Development Kit), melyeknek célfelhasználói a userek, illetve a fejlesztők. A fejlesztői készlet magába foglalja a programfeljesztéshez szükséges elemeket.
+		</para>
+		<para>
+
+A két nyelv szintaxisa az ismertebb programozási nyelvek nagyrészével megyegyezik. Más nyelvben jártas programozónak kevés
+dolga lesz a nyelvtana tanulásával, csak kisebb eltéréseket kell megtanulni.
+		</para>
+		<para>
+
+A JVM által feldolgozható bájtkódot tartalmazza a fordítás után a .java kiterjesztéssel rendelkező fájl. A bájtkódok a 0xCAFEBABE szóval kezdődnek. Ennek a szerepe a fájlellőrzés, a pontos kód belső viccként jött létre.
+		</para>
+		<para>
+
+Alapértelmezetten .jar fájlokba csomagolják a forrásokat ami lehetőséget ad különféle információk megadására, például a manifest fájl, tömörítésre vagy digitális aláírás megadására. Ezt a JAR segédprogrammal vagy IDE-ken keresztül is végezhetjük. 
+		</para>
+	</section>
+
+	<section>
+		<title>Python és a mobilprogramozás</title>
+		<para>
+		A Python nyelv feltűnően eltér a korábban tanult nyelvektől. A programnyelvet bármely operációs rendszerről könnyedén lehet írni, amelyek legtöbb esetben natívan is támogatják. 
+</para>
+		<para>Futtatásához nincs szükség fordító programra, a nyelvet akár írás közben futtatni lehet tesztelésként. Ez nem csak egyszerüsíti a programozó munkáját, hanem jóval csökkenti a fejlesztésközi tesztelésekhez szükséges időt. 
+A nyelv egy interpretert használ amely valós időben "olvassa" a kódot és azt azonnal képes futtatni.
+		</para>
+		<para>
+A nyelv nagyban hasonlít a C/C++ nyelvhez legtöbb részében, kivéve amivel ő maga állt elő. A pogramozási egyszerüséget az is segíti hogy magas szintű adattípusokkal és kódcsoportosítással is rendelkezik. 
+</para>
+		<para>A nyelvben nincs szükség változó/argumentum definiálására, ezt a nyelv autómatikusan megteszi. Feltűnő még az is hogy más nyelvekkel ellentétben a kapcsoszárójelek helyett behúzásokkal különbözteti meg a kód szintaxisát, amely rengeteg emberi hibát likvidál. A Pyton nyelv az alábbi adattípusokkal rendelkezik: szám, string, n, lista, szótár. A nyelv ezeket dinamikusan kezeli. A nyelvben a null értéke None. A függvényeket a def kulcsszóval lehetséges definiálni, paramétereik alapértelmezett értékekkel adódnak át.
+		</para>
+		<para>
+A ki és bemenetet C++-hoz hasonlóan kezeli, ámbár rengeteg könnyítéssel. Az elágazásokat és a loopokat másképp kezeli mint más nyelvek. Szintaxtusa itt eltér nagy mértékben az egyszerüsités nevében. Észrevételeim szerint a loopok a listák kezelésére vannak optimalizálva, amelyre a nyelv nagy hangsúlyt folytat felhasználóbarátságával.
+		</para>
+		<para>
+A Python rengeteg hasznos modult is tartalmaz. Például: sysinfo, messaging. A nyelv kivételeket is tud kezelni a try és except kulcsszavakkal.
+		</para>
+	</section>	
+	
+
+   
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+</chapter>                
