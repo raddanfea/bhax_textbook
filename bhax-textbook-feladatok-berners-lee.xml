@@ -48,6 +48,12 @@ A JVM által feldolgozható bájtkódot tartalmazza a fordítás után a .java k
 
 Alapértelmezetten .jar fájlokba csomagolják a forrásokat ami lehetőséget ad különféle információk megadására, például a manifest fájl, tömörítésre vagy digitális aláírás megadására. Ezt a JAR segédprogrammal vagy IDE-ken keresztül is végezhetjük. 
 		</para>
+		<para>
+Ezenkívül bizonyos nyelvi funkciók lehetővé teszik a Java fordítójának, hogy olyan feltételezéseket tegyen a kódjáról, amelyek lehetővé teszik bizonyos részek optimalizálását, amelyek éppen nem biztonságosak a C++ fordító számára. Mivel hozzáfér a mutatókhoz, sok olyan optimalizálás történik, amelyek nem biztonságosak.
+		</para>
+		<para>
+A Java sokkal hatékonyabban képes halom-allokációt végezni, mint a C++, mivel a szemétszedő és a kód közötti absztrakciós réteg lehetővé teszi, hogy egyszerre végezzen minden halom-tömörítés.
+		</para>
 	</section>
 
 	<section>
